@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { SlideDeck } from "@/components/SlideDeck";
 
 export const Route = createFileRoute("/")({
   head: () => ({
