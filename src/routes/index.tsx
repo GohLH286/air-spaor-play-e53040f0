@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { SlideDeck } from "@/components/SlideDeck";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -168,33 +169,51 @@ function Lesson() {
 
 function SituationView() {
   return (
-    <div className="grid gap-6 md:grid-cols-2 md:items-center">
-      <div>
-        <p className="text-base leading-relaxed md:text-lg">
-          Mrs Tan is pumping up a bicycle tyre before school. When she presses the pump
-          handle down, she notices it becomes <span className="font-bold">harder and harder</span>{" "}
-          to push, even though the pump is closed at the bottom.
+    <div className="space-y-6">
+      <div className="rounded-2xl border-l-4 bg-muted p-4" style={{ borderColor: "var(--situation)" }}>
+        <p className="text-xs font-bold uppercase tracking-widest text-[var(--situation)]">
+          For Teachers · PLT Briefing
         </p>
-        <div className="mt-4 rounded-2xl bg-muted p-4">
-          <p className="text-sm font-semibold text-muted-foreground">Think about it 💭</p>
-          <p className="mt-1 text-sm">
-            What is inside the pump? Where does it go when Mrs Tan pushes the handle?
-          </p>
-        </div>
+        <p className="mt-1 text-sm">
+          Before starting the lesson with pupils, go through the slides below as a team to
+          align on <span className="font-semibold">what a Learning Circle is</span>, the SPAOR
+          cycle, and how it frames today's investigation on air.
+        </p>
       </div>
-      <div className="flex items-center justify-center">
-        <div
-          className="relative flex h-64 w-64 items-center justify-center rounded-3xl"
-          style={{ background: "oklch(0.94 0.05 220)" }}
-        >
-          <svg viewBox="0 0 200 200" className="h-full w-full p-6">
-            <rect x="80" y="30" width="40" height="120" rx="6" fill="oklch(0.85 0.03 240)" />
-            <rect x="70" y="20" width="60" height="14" rx="4" fill="oklch(0.55 0.16 235)" />
-            <circle cx="100" cy="165" r="18" fill="oklch(0.4 0.05 250)" />
-            <circle cx="100" cy="90" r="4" fill="white" />
-            <circle cx="90" cy="110" r="3" fill="white" />
-            <circle cx="110" cy="70" r="3" fill="white" />
-          </svg>
+
+      <SlideDeck />
+
+      <div className="grid gap-6 md:grid-cols-2 md:items-center">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            Lesson Situation (for pupils)
+          </p>
+          <p className="mt-2 text-base leading-relaxed md:text-lg">
+            Mrs Tan is pumping up a bicycle tyre before school. When she presses the pump
+            handle down, she notices it becomes <span className="font-bold">harder and harder</span>{" "}
+            to push, even though the pump is closed at the bottom.
+          </p>
+          <div className="mt-4 rounded-2xl bg-muted p-4">
+            <p className="text-sm font-semibold text-muted-foreground">Think about it 💭</p>
+            <p className="mt-1 text-sm">
+              What is inside the pump? Where does it go when Mrs Tan pushes the handle?
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <div
+            className="relative flex h-64 w-64 items-center justify-center rounded-3xl"
+            style={{ background: "oklch(0.94 0.05 220)" }}
+          >
+            <svg viewBox="0 0 200 200" className="h-full w-full p-6">
+              <rect x="80" y="30" width="40" height="120" rx="6" fill="oklch(0.85 0.03 240)" />
+              <rect x="70" y="20" width="60" height="14" rx="4" fill="oklch(0.55 0.16 235)" />
+              <circle cx="100" cy="165" r="18" fill="oklch(0.4 0.05 250)" />
+              <circle cx="100" cy="90" r="4" fill="white" />
+              <circle cx="90" cy="110" r="3" fill="white" />
+              <circle cx="110" cy="70" r="3" fill="white" />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
