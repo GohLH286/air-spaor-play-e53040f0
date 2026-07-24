@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "A PLT-ready interactive lesson exploring how air can be compressed, aligned to the MOE Primary Science syllabus.",
+          "Interactive Primary 3 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
