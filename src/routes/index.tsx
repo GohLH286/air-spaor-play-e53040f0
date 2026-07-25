@@ -233,8 +233,76 @@ function ProblemView({
     { id: "c", text: "The air disappears when pushed." },
     { id: "d", text: "The air turns into water." },
   ];
+  const research = [
+    {
+      n: "1",
+      source: "SingTeach (NIE, 2023)",
+      title: "Inquiry-Based Learning",
+      points: ["Active exploration & prediction", "Building conceptual understanding"],
+    },
+    {
+      n: "2",
+      source: "TERC: Air as a Gas (2019)",
+      title: "Hands-On Experiments",
+      points: ["Air compressibility with syringes", "Particle model diagrams"],
+    },
+    {
+      n: "3",
+      source: "MOE Primary Science Syllabus",
+      title: "Matter – Air Concepts",
+      points: ["Air occupies space", "Air can be compressed"],
+    },
+    {
+      n: "4",
+      source: "ASCD (2022)",
+      title: "Active Learning & Visuals",
+      points: ["Particle diagrams & models", "Collaborative discussion"],
+    },
+  ];
   return (
-    <div>
+    <div className="space-y-6">
+      <div
+        className="rounded-2xl p-5 md:p-6"
+        style={{ background: "oklch(0.9 0.06 230)" }}
+      >
+        <p className="text-xs font-bold uppercase tracking-widest text-[var(--observation)]">
+          For Educators · Literature Review
+        </p>
+        <h3 className="mt-1 text-lg font-bold md:text-xl">
+          Effective Strategies for Teaching Air as a Gas
+        </h3>
+        <p className="mt-1 text-sm text-[var(--foreground)]/80">
+          Research insights that shape the pupil-facing Problem below.
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          {research.map((r) => (
+            <div
+              key={r.n}
+              className="rounded-xl bg-white/80 p-4 backdrop-blur-sm"
+            >
+              <div className="flex items-center gap-2">
+                <span
+                  className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white"
+                  style={{ background: "var(--observation)" }}
+                >
+                  {r.n}
+                </span>
+                <p className="text-xs font-semibold text-muted-foreground">
+                  {r.source}
+                </p>
+              </div>
+              <p className="mt-2 text-sm font-bold">{r.title}</p>
+              <ul className="mt-1 space-y-0.5 text-xs text-[var(--foreground)]/80">
+                {r.points.map((p) => (
+                  <li key={p}>• {p}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
       <p className="text-lg font-semibold">
         Focus question: Can air be squeezed into a smaller space?
       </p>
@@ -243,6 +311,7 @@ function ProblemView({
         we are being scientists!
       </p>
       <div className="mt-5 grid gap-3 md:grid-cols-2">
+
         {options.map((o) => {
           const isSel = predicted === o.id;
           return (
