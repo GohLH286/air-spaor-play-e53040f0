@@ -236,27 +236,69 @@ function ProblemView({
   const research = [
     {
       n: "1",
-      source: "SingTeach (NIE, 2023)",
+      source: "SingTeach · NIE 2023",
       title: "Inquiry-Based Learning",
-      points: ["Active exploration & prediction", "Building conceptual understanding"],
+      color: "oklch(0.65 0.18 40)",
+      icon: (
+        <svg viewBox="0 0 48 48" className="h-10 w-10">
+          <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" strokeWidth="3" />
+          <line x1="29" y1="29" x2="40" y2="40" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+          <circle cx="20" cy="20" r="4" fill="currentColor" />
+        </svg>
+      ),
+      stat: "↑",
+      statLabel: "Predict & Explore",
     },
     {
       n: "2",
-      source: "TERC: Air as a Gas (2019)",
+      source: "TERC · Air as a Gas 2019",
       title: "Hands-On Experiments",
-      points: ["Air compressibility with syringes", "Particle model diagrams"],
+      color: "oklch(0.6 0.17 145)",
+      icon: (
+        <svg viewBox="0 0 48 48" className="h-10 w-10">
+          <rect x="18" y="6" width="12" height="30" rx="2" fill="none" stroke="currentColor" strokeWidth="3" />
+          <rect x="14" y="4" width="20" height="6" rx="2" fill="currentColor" />
+          <circle cx="24" cy="20" r="2" fill="currentColor" />
+          <circle cx="21" cy="26" r="2" fill="currentColor" />
+          <circle cx="27" cy="30" r="2" fill="currentColor" />
+        </svg>
+      ),
+      stat: "🧪",
+      statLabel: "Syringe Model",
     },
     {
       n: "3",
-      source: "MOE Primary Science Syllabus",
-      title: "Matter – Air Concepts",
-      points: ["Air occupies space", "Air can be compressed"],
+      source: "MOE Primary Syllabus",
+      title: "Air as Matter",
+      color: "oklch(0.55 0.16 235)",
+      icon: (
+        <svg viewBox="0 0 48 48" className="h-10 w-10">
+          <circle cx="16" cy="16" r="4" fill="currentColor" />
+          <circle cx="32" cy="16" r="4" fill="currentColor" />
+          <circle cx="24" cy="28" r="4" fill="currentColor" />
+          <circle cx="14" cy="36" r="4" fill="currentColor" />
+          <circle cx="34" cy="36" r="4" fill="currentColor" />
+          <rect x="6" y="6" width="36" height="36" rx="4" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" />
+        </svg>
+      ),
+      stat: "≡",
+      statLabel: "Occupies Space",
     },
     {
       n: "4",
-      source: "ASCD (2022)",
-      title: "Active Learning & Visuals",
-      points: ["Particle diagrams & models", "Collaborative discussion"],
+      source: "ASCD 2022",
+      title: "Active Learning",
+      color: "oklch(0.6 0.18 300)",
+      icon: (
+        <svg viewBox="0 0 48 48" className="h-10 w-10">
+          <circle cx="16" cy="18" r="6" fill="currentColor" />
+          <circle cx="32" cy="18" r="6" fill="currentColor" />
+          <path d="M6 40 C6 32 14 28 16 28 C18 28 26 32 26 40 Z" fill="currentColor" />
+          <path d="M22 40 C22 32 30 28 32 28 C34 28 42 32 42 40 Z" fill="currentColor" opacity="0.6" />
+        </svg>
+      ),
+      stat: "👥",
+      statLabel: "Collaborate",
     },
   ];
   return (
@@ -272,31 +314,32 @@ function ProblemView({
           Effective Strategies for Teaching Air as a Gas
         </h3>
         <p className="mt-1 text-sm text-[var(--foreground)]/80">
-          Research insights that shape the pupil-facing Problem below.
+          Four research pillars shaping this lesson.
         </p>
-        <div className="mt-4 grid gap-3 md:grid-cols-2">
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {research.map((r) => (
             <div
               key={r.n}
-              className="rounded-xl bg-white/80 p-4 backdrop-blur-sm"
+              className="relative overflow-hidden rounded-2xl bg-white p-4 shadow-sm"
             >
-              <div className="flex items-center gap-2">
-                <span
-                  className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white"
-                  style={{ background: "var(--observation)" }}
-                >
-                  {r.n}
-                </span>
-                <p className="text-xs font-semibold text-muted-foreground">
-                  {r.source}
-                </p>
+              <span
+                className="absolute -right-3 -top-3 text-6xl font-black opacity-10"
+                style={{ color: r.color }}
+              >
+                {r.n}
+              </span>
+              <div style={{ color: r.color }}>{r.icon}</div>
+              <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                {r.source}
+              </p>
+              <p className="mt-1 text-sm font-bold leading-tight">{r.title}</p>
+              <div
+                className="mt-3 flex items-center gap-2 rounded-lg px-2 py-1 text-xs font-semibold"
+                style={{ background: `color-mix(in oklab, ${r.color} 12%, white)`, color: r.color }}
+              >
+                <span className="text-base">{r.stat}</span>
+                <span>{r.statLabel}</span>
               </div>
-              <p className="mt-2 text-sm font-bold">{r.title}</p>
-              <ul className="mt-1 space-y-0.5 text-xs text-[var(--foreground)]/80">
-                {r.points.map((p) => (
-                  <li key={p}>• {p}</li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
