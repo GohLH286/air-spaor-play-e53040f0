@@ -345,8 +345,10 @@ function ProblemView({
           </p>
         </div>
       )}
+      </div>
     </div>
   );
+
 }
 
 function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: number) => void }) {
