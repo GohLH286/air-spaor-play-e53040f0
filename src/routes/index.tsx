@@ -274,7 +274,7 @@ function ProblemView({
             Four research pillars shaping this lesson — visual summary.
           </p>
 
-          <div className="relative mt-5">
+          <div className="relative mx-auto mt-5 max-w-md">
             <div
               className="absolute -inset-1 rounded-2xl opacity-40 blur"
               style={{
