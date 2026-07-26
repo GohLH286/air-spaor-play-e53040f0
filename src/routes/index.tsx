@@ -270,72 +270,49 @@ function ProblemView({
             Effective Strategies for Teaching Air as a Gas
           </h3>
           <p className="mt-1 text-sm" style={{ color: "oklch(0.75 0.02 250)" }}>
-            Four research pillars shaping this lesson.
+            Four research pillars shaping this lesson — visual summary.
           </p>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {research.map((r) => (
-              <div key={r.n} className="group relative">
-                <div
-                  className="absolute -inset-0.5 rounded-2xl opacity-25 blur transition duration-500 group-hover:opacity-60"
-                  style={{ background: r.glow }}
-                />
-                <div
-                  className="relative flex h-full flex-col gap-2 overflow-hidden rounded-2xl p-4 backdrop-blur-xl transition-transform duration-300 group-hover:-translate-y-1"
-                  style={{
-                    background: "oklch(0.19 0.035 260 / 0.82)",
-                    border: "1px solid oklch(1 0 0 / 0.12)",
-                  }}
-                >
-                  <span
-                    className="absolute -right-2 -top-4 text-6xl font-black opacity-[0.13]"
-                    style={{ color: r.color }}
-                  >
-                    {r.n}
-                  </span>
-                  <div className="flex items-start justify-between">
-                    <div style={{ color: r.color, filter: `drop-shadow(0 0 8px ${r.color})` }}>
-                      {r.icon}
-                    </div>
-                    <span
-                      className="h-1.5 w-1.5 animate-pulse rounded-full"
-                      style={{ background: r.color, boxShadow: `0 0 8px ${r.color}` }}
-                    />
-                  </div>
-                  <span
-                    className="mt-1 w-fit rounded px-2 py-0.5 font-mono text-[10px] font-medium tracking-wide"
-                    style={{
-                      color: r.color,
-                      border: `1px solid color-mix(in oklab, ${r.color} 35%, transparent)`,
-                      background: `color-mix(in oklab, ${r.color} 12%, transparent)`,
-                    }}
-                  >
-                    {r.source}
-                  </span>
-                  <p
-                    className="text-sm font-bold leading-tight"
-                    style={{ color: "oklch(0.99 0 0)" }}
-                  >
-                    {r.title}
-                  </p>
-                  <p className="text-xs leading-relaxed" style={{ color: "oklch(0.72 0.02 255)" }}>
-                    {r.desc}
-                  </p>
-                  <div
-                    className="mt-auto flex items-center gap-2 pt-2 text-[11px] font-semibold"
-                    style={{ color: r.color }}
-                  >
-                    <span className="text-sm">{r.stat}</span>
-                    <span>{r.statLabel}</span>
-                    <span
-                      className="ml-auto h-px flex-1"
-                      style={{ background: `color-mix(in oklab, ${r.color} 40%, transparent)` }}
-                    />
-                  </div>
-                </div>
-              </div>
+          <div className="relative mt-5">
+            <div
+              className="absolute -inset-1 rounded-2xl opacity-40 blur"
+              style={{
+                background:
+                  "linear-gradient(120deg, oklch(0.72 0.15 200), oklch(0.6 0.2 280), oklch(0.75 0.16 70))",
+              }}
+            />
+            <div
+              className="relative overflow-hidden rounded-2xl"
+              style={{ border: "1px solid oklch(1 0 0 / 0.14)" }}
+            >
+              <img
+                src={litReviewInfographic.url}
+                alt="Literature review infographic: effective strategies for teaching air as a gas — inquiry-based learning (SingTeach NIE 2023), hands-on syringe experiments (TERC 2019), MOE primary science syllabus air concepts, and active learning with visuals (ASCD 2022)"
+                className="block w-full"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {[
+              "Inquiry-Based Experiments",
+              "Visual Representations",
+              "Collaborative Discussion",
+            ].map((k) => (
+              <span
+                key={k}
+                className="rounded-full px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-wider"
+                style={{
+                  color: "oklch(0.88 0.1 200)",
+                  border: "1px solid oklch(0.7 0.13 210 / 0.45)",
+                  background: "oklch(0.7 0.13 210 / 0.12)",
+                }}
+              >
+                {k}
+              </span>
             ))}
           </div>
+
         </div>
       </div>
 
