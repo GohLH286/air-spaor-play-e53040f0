@@ -267,7 +267,7 @@ function ProblemView({
           <circle cx="27" cy="30" r="2" fill="currentColor" />
         </svg>
       ),
-      stat: "🧪",
+      stat: "◇",
       statLabel: "Syringe Model",
     },
     {
@@ -305,7 +305,7 @@ function ProblemView({
           <path d="M22 40 C22 32 30 28 32 28 C34 28 42 32 42 40 Z" fill="currentColor" opacity="0.6" />
         </svg>
       ),
-      stat: "👥",
+      stat: "◎",
       statLabel: "Collaborate",
     },
   ];
