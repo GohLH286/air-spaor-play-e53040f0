@@ -236,11 +236,13 @@ function ProblemView({
   const research = [
     {
       n: "1",
-      source: "SingTeach · NIE 2023",
+      source: "SINGTEACH · NIE 2023",
       title: "Inquiry-Based Learning",
-      color: "oklch(0.65 0.18 40)",
+      desc: "Developing scientific reasoning through structured investigative questioning.",
+      color: "oklch(0.78 0.13 200)",
+      glow: "linear-gradient(90deg, oklch(0.72 0.15 200), oklch(0.55 0.19 260))",
       icon: (
-        <svg viewBox="0 0 48 48" className="h-10 w-10">
+        <svg viewBox="0 0 48 48" className="h-9 w-9">
           <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" strokeWidth="3" />
           <line x1="29" y1="29" x2="40" y2="40" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
           <circle cx="20" cy="20" r="4" fill="currentColor" />
@@ -251,11 +253,13 @@ function ProblemView({
     },
     {
       n: "2",
-      source: "TERC · Air as a Gas 2019",
+      source: "TERC · AIR AS A GAS 2019",
       title: "Hands-On Experiments",
-      color: "oklch(0.6 0.17 145)",
+      desc: "Concrete experiences with physical phenomena to build conceptual models.",
+      color: "oklch(0.75 0.16 305)",
+      glow: "linear-gradient(90deg, oklch(0.6 0.22 300), oklch(0.62 0.23 350))",
       icon: (
-        <svg viewBox="0 0 48 48" className="h-10 w-10">
+        <svg viewBox="0 0 48 48" className="h-9 w-9">
           <rect x="18" y="6" width="12" height="30" rx="2" fill="none" stroke="currentColor" strokeWidth="3" />
           <rect x="14" y="4" width="20" height="6" rx="2" fill="currentColor" />
           <circle cx="24" cy="20" r="2" fill="currentColor" />
@@ -268,11 +272,13 @@ function ProblemView({
     },
     {
       n: "3",
-      source: "MOE Primary Syllabus",
+      source: "MOE PRIMARY SYLLABUS",
       title: "Air as Matter",
-      color: "oklch(0.55 0.16 235)",
+      desc: "Primary 3 core curriculum focus on the physical properties of invisible gases.",
+      color: "oklch(0.8 0.15 165)",
+      glow: "linear-gradient(90deg, oklch(0.7 0.16 160), oklch(0.65 0.15 200))",
       icon: (
-        <svg viewBox="0 0 48 48" className="h-10 w-10">
+        <svg viewBox="0 0 48 48" className="h-9 w-9">
           <circle cx="16" cy="16" r="4" fill="currentColor" />
           <circle cx="32" cy="16" r="4" fill="currentColor" />
           <circle cx="24" cy="28" r="4" fill="currentColor" />
@@ -288,9 +294,11 @@ function ProblemView({
       n: "4",
       source: "ASCD 2022",
       title: "Active Learning",
-      color: "oklch(0.6 0.18 300)",
+      desc: "Engaging students through collaborative problem-solving strategies.",
+      color: "oklch(0.82 0.14 75)",
+      glow: "linear-gradient(90deg, oklch(0.75 0.16 70), oklch(0.68 0.19 45))",
       icon: (
-        <svg viewBox="0 0 48 48" className="h-10 w-10">
+        <svg viewBox="0 0 48 48" className="h-9 w-9">
           <circle cx="16" cy="18" r="6" fill="currentColor" />
           <circle cx="32" cy="18" r="6" fill="currentColor" />
           <path d="M6 40 C6 32 14 28 16 28 C18 28 26 32 26 40 Z" fill="currentColor" />
@@ -304,46 +312,109 @@ function ProblemView({
   return (
     <div className="space-y-6">
       <div
-        className="rounded-2xl p-5 md:p-6"
-        style={{ background: "oklch(0.9 0.06 230)" }}
+        className="relative overflow-hidden rounded-2xl p-5 md:p-6"
+        style={{
+          background:
+            "radial-gradient(120% 90% at 8% 0%, oklch(0.32 0.1 250) 0%, oklch(0.18 0.05 255) 45%, oklch(0.13 0.03 260) 100%)",
+          border: "1px solid oklch(1 0 0 / 0.1)",
+        }}
       >
-        <p className="text-xs font-bold uppercase tracking-widest text-[var(--observation)]">
-          For Educators · Literature Review
-        </p>
-        <h3 className="mt-1 text-lg font-bold md:text-xl">
-          Effective Strategies for Teaching Air as a Gas
-        </h3>
-        <p className="mt-1 text-sm text-[var(--foreground)]/80">
-          Four research pillars shaping this lesson.
-        </p>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {research.map((r) => (
-            <div
-              key={r.n}
-              className="relative overflow-hidden rounded-2xl bg-white p-4 shadow-sm"
+        {/* HUD grid overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.14]"
+          style={{
+            backgroundImage:
+              "linear-gradient(oklch(0.85 0.13 200 / 0.5) 1px, transparent 1px), linear-gradient(90deg, oklch(0.85 0.13 200 / 0.5) 1px, transparent 1px)",
+            backgroundSize: "34px 34px",
+            maskImage: "radial-gradient(90% 70% at 50% 0%, black, transparent 85%)",
+          }}
+        />
+        <div className="relative">
+          <div className="flex items-center gap-2">
+            <div className="h-px w-8" style={{ background: "oklch(0.8 0.14 200)" }} />
+            <p
+              className="text-[10px] font-bold uppercase tracking-[0.2em]"
+              style={{ color: "oklch(0.85 0.13 200)" }}
             >
-              <span
-                className="absolute -right-3 -top-3 text-6xl font-black opacity-10"
-                style={{ color: r.color }}
-              >
-                {r.n}
-              </span>
-              <div style={{ color: r.color }}>{r.icon}</div>
-              <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                {r.source}
-              </p>
-              <p className="mt-1 text-sm font-bold leading-tight">{r.title}</p>
-              <div
-                className="mt-3 flex items-center gap-2 rounded-lg px-2 py-1 text-xs font-semibold"
-                style={{ background: `color-mix(in oklab, ${r.color} 12%, white)`, color: r.color }}
-              >
-                <span className="text-base">{r.stat}</span>
-                <span>{r.statLabel}</span>
+              For Educators · Literature Review
+            </p>
+          </div>
+          <h3
+            className="mt-1.5 text-lg font-bold tracking-tight md:text-2xl"
+            style={{ color: "oklch(0.99 0 0)" }}
+          >
+            Effective Strategies for Teaching Air as a Gas
+          </h3>
+          <p className="mt-1 text-sm" style={{ color: "oklch(0.75 0.02 250)" }}>
+            Four research pillars shaping this lesson.
+          </p>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {research.map((r) => (
+              <div key={r.n} className="group relative">
+                <div
+                  className="absolute -inset-0.5 rounded-2xl opacity-25 blur transition duration-500 group-hover:opacity-60"
+                  style={{ background: r.glow }}
+                />
+                <div
+                  className="relative flex h-full flex-col gap-2 overflow-hidden rounded-2xl p-4 backdrop-blur-xl transition-transform duration-300 group-hover:-translate-y-1"
+                  style={{
+                    background: "oklch(0.19 0.035 260 / 0.82)",
+                    border: "1px solid oklch(1 0 0 / 0.12)",
+                  }}
+                >
+                  <span
+                    className="absolute -right-2 -top-4 text-6xl font-black opacity-[0.13]"
+                    style={{ color: r.color }}
+                  >
+                    {r.n}
+                  </span>
+                  <div className="flex items-start justify-between">
+                    <div style={{ color: r.color, filter: `drop-shadow(0 0 8px ${r.color})` }}>
+                      {r.icon}
+                    </div>
+                    <span
+                      className="h-1.5 w-1.5 animate-pulse rounded-full"
+                      style={{ background: r.color, boxShadow: `0 0 8px ${r.color}` }}
+                    />
+                  </div>
+                  <span
+                    className="mt-1 w-fit rounded px-2 py-0.5 font-mono text-[10px] font-medium tracking-wide"
+                    style={{
+                      color: r.color,
+                      border: `1px solid color-mix(in oklab, ${r.color} 35%, transparent)`,
+                      background: `color-mix(in oklab, ${r.color} 12%, transparent)`,
+                    }}
+                  >
+                    {r.source}
+                  </span>
+                  <p
+                    className="text-sm font-bold leading-tight"
+                    style={{ color: "oklch(0.99 0 0)" }}
+                  >
+                    {r.title}
+                  </p>
+                  <p className="text-xs leading-relaxed" style={{ color: "oklch(0.72 0.02 255)" }}>
+                    {r.desc}
+                  </p>
+                  <div
+                    className="mt-auto flex items-center gap-2 pt-2 text-[11px] font-semibold"
+                    style={{ color: r.color }}
+                  >
+                    <span className="text-sm">{r.stat}</span>
+                    <span>{r.statLabel}</span>
+                    <span
+                      className="ml-auto h-px flex-1"
+                      style={{ background: `color-mix(in oklab, ${r.color} 40%, transparent)` }}
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
+
 
       <div>
       <p className="text-lg font-semibold">
