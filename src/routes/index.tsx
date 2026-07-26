@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SlideDeck } from "@/components/SlideDeck";
+import litReviewInfographic from "@/assets/lit-review-infographic.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
