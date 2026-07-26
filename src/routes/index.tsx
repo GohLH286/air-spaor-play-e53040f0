@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SlideDeck } from "@/components/SlideDeck";
+import litReviewInfographic from "@/assets/lit-review-infographic.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -233,82 +234,6 @@ function ProblemView({
     { id: "c", text: "The air disappears when pushed." },
     { id: "d", text: "The air turns into water." },
   ];
-  const research = [
-    {
-      n: "1",
-      source: "SINGTEACH · NIE 2023",
-      title: "Inquiry-Based Learning",
-      desc: "Developing scientific reasoning through structured investigative questioning.",
-      color: "oklch(0.78 0.13 200)",
-      glow: "linear-gradient(90deg, oklch(0.72 0.15 200), oklch(0.55 0.19 260))",
-      icon: (
-        <svg viewBox="0 0 48 48" className="h-9 w-9">
-          <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" strokeWidth="3" />
-          <line x1="29" y1="29" x2="40" y2="40" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-          <circle cx="20" cy="20" r="4" fill="currentColor" />
-        </svg>
-      ),
-      stat: "↑",
-      statLabel: "Predict & Explore",
-    },
-    {
-      n: "2",
-      source: "TERC · AIR AS A GAS 2019",
-      title: "Hands-On Experiments",
-      desc: "Concrete experiences with physical phenomena to build conceptual models.",
-      color: "oklch(0.75 0.16 305)",
-      glow: "linear-gradient(90deg, oklch(0.6 0.22 300), oklch(0.62 0.23 350))",
-      icon: (
-        <svg viewBox="0 0 48 48" className="h-9 w-9">
-          <rect x="18" y="6" width="12" height="30" rx="2" fill="none" stroke="currentColor" strokeWidth="3" />
-          <rect x="14" y="4" width="20" height="6" rx="2" fill="currentColor" />
-          <circle cx="24" cy="20" r="2" fill="currentColor" />
-          <circle cx="21" cy="26" r="2" fill="currentColor" />
-          <circle cx="27" cy="30" r="2" fill="currentColor" />
-        </svg>
-      ),
-      stat: "◇",
-      statLabel: "Syringe Model",
-    },
-    {
-      n: "3",
-      source: "MOE PRIMARY SYLLABUS",
-      title: "Air as Matter",
-      desc: "Primary 3 core curriculum focus on the physical properties of invisible gases.",
-      color: "oklch(0.8 0.15 165)",
-      glow: "linear-gradient(90deg, oklch(0.7 0.16 160), oklch(0.65 0.15 200))",
-      icon: (
-        <svg viewBox="0 0 48 48" className="h-9 w-9">
-          <circle cx="16" cy="16" r="4" fill="currentColor" />
-          <circle cx="32" cy="16" r="4" fill="currentColor" />
-          <circle cx="24" cy="28" r="4" fill="currentColor" />
-          <circle cx="14" cy="36" r="4" fill="currentColor" />
-          <circle cx="34" cy="36" r="4" fill="currentColor" />
-          <rect x="6" y="6" width="36" height="36" rx="4" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" />
-        </svg>
-      ),
-      stat: "≡",
-      statLabel: "Occupies Space",
-    },
-    {
-      n: "4",
-      source: "ASCD 2022",
-      title: "Active Learning",
-      desc: "Engaging students through collaborative problem-solving strategies.",
-      color: "oklch(0.82 0.14 75)",
-      glow: "linear-gradient(90deg, oklch(0.75 0.16 70), oklch(0.68 0.19 45))",
-      icon: (
-        <svg viewBox="0 0 48 48" className="h-9 w-9">
-          <circle cx="16" cy="18" r="6" fill="currentColor" />
-          <circle cx="32" cy="18" r="6" fill="currentColor" />
-          <path d="M6 40 C6 32 14 28 16 28 C18 28 26 32 26 40 Z" fill="currentColor" />
-          <path d="M22 40 C22 32 30 28 32 28 C34 28 42 32 42 40 Z" fill="currentColor" opacity="0.6" />
-        </svg>
-      ),
-      stat: "◎",
-      statLabel: "Collaborate",
-    },
-  ];
   return (
     <div className="space-y-6">
       <div
@@ -346,72 +271,49 @@ function ProblemView({
             Effective Strategies for Teaching Air as a Gas
           </h3>
           <p className="mt-1 text-sm" style={{ color: "oklch(0.75 0.02 250)" }}>
-            Four research pillars shaping this lesson.
+            Four research pillars shaping this lesson — visual summary.
           </p>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {research.map((r) => (
-              <div key={r.n} className="group relative">
-                <div
-                  className="absolute -inset-0.5 rounded-2xl opacity-25 blur transition duration-500 group-hover:opacity-60"
-                  style={{ background: r.glow }}
-                />
-                <div
-                  className="relative flex h-full flex-col gap-2 overflow-hidden rounded-2xl p-4 backdrop-blur-xl transition-transform duration-300 group-hover:-translate-y-1"
-                  style={{
-                    background: "oklch(0.19 0.035 260 / 0.82)",
-                    border: "1px solid oklch(1 0 0 / 0.12)",
-                  }}
-                >
-                  <span
-                    className="absolute -right-2 -top-4 text-6xl font-black opacity-[0.13]"
-                    style={{ color: r.color }}
-                  >
-                    {r.n}
-                  </span>
-                  <div className="flex items-start justify-between">
-                    <div style={{ color: r.color, filter: `drop-shadow(0 0 8px ${r.color})` }}>
-                      {r.icon}
-                    </div>
-                    <span
-                      className="h-1.5 w-1.5 animate-pulse rounded-full"
-                      style={{ background: r.color, boxShadow: `0 0 8px ${r.color}` }}
-                    />
-                  </div>
-                  <span
-                    className="mt-1 w-fit rounded px-2 py-0.5 font-mono text-[10px] font-medium tracking-wide"
-                    style={{
-                      color: r.color,
-                      border: `1px solid color-mix(in oklab, ${r.color} 35%, transparent)`,
-                      background: `color-mix(in oklab, ${r.color} 12%, transparent)`,
-                    }}
-                  >
-                    {r.source}
-                  </span>
-                  <p
-                    className="text-sm font-bold leading-tight"
-                    style={{ color: "oklch(0.99 0 0)" }}
-                  >
-                    {r.title}
-                  </p>
-                  <p className="text-xs leading-relaxed" style={{ color: "oklch(0.72 0.02 255)" }}>
-                    {r.desc}
-                  </p>
-                  <div
-                    className="mt-auto flex items-center gap-2 pt-2 text-[11px] font-semibold"
-                    style={{ color: r.color }}
-                  >
-                    <span className="text-sm">{r.stat}</span>
-                    <span>{r.statLabel}</span>
-                    <span
-                      className="ml-auto h-px flex-1"
-                      style={{ background: `color-mix(in oklab, ${r.color} 40%, transparent)` }}
-                    />
-                  </div>
-                </div>
-              </div>
+          <div className="relative mx-auto mt-5 max-w-md">
+            <div
+              className="absolute -inset-1 rounded-2xl opacity-40 blur"
+              style={{
+                background:
+                  "linear-gradient(120deg, oklch(0.72 0.15 200), oklch(0.6 0.2 280), oklch(0.75 0.16 70))",
+              }}
+            />
+            <div
+              className="relative overflow-hidden rounded-2xl"
+              style={{ border: "1px solid oklch(1 0 0 / 0.14)" }}
+            >
+              <img
+                src={litReviewInfographic.url}
+                alt="Literature review infographic: effective strategies for teaching air as a gas — inquiry-based learning (SingTeach NIE 2023), hands-on syringe experiments (TERC 2019), MOE primary science syllabus air concepts, and active learning with visuals (ASCD 2022)"
+                className="block w-full"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {[
+              "Inquiry-Based Experiments",
+              "Visual Representations",
+              "Collaborative Discussion",
+            ].map((k) => (
+              <span
+                key={k}
+                className="rounded-full px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-wider"
+                style={{
+                  color: "oklch(0.88 0.1 200)",
+                  border: "1px solid oklch(0.7 0.13 210 / 0.45)",
+                  background: "oklch(0.7 0.13 210 / 0.12)",
+                }}
+              >
+                {k}
+              </span>
             ))}
           </div>
+
         </div>
       </div>
 
