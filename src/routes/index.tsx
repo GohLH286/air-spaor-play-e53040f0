@@ -108,12 +108,12 @@ function Lesson() {
         </nav>
 
         <section
-          className="rounded-3xl border bg-card p-6 shadow-[var(--shadow-soft)] md:p-10"
-          style={{ borderTop: `6px solid ${activeStage.color}` }}
+          className="rounded-[2rem] border bg-card p-7 shadow-[var(--shadow-soft)] md:p-12"
+          style={{ borderTop: `8px solid ${activeStage.color}` }}
         >
-          <div className="mb-6 flex items-center gap-3">
+          <div className="mb-8 flex items-center gap-4">
             <span
-              className="flex h-10 w-10 items-center justify-center rounded-full text-lg font-bold text-white"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-lg font-bold text-white shadow-soft"
               style={{ background: activeStage.color }}
             >
               {activeStage.key}
@@ -135,9 +135,9 @@ function Lesson() {
             />
           )}
 
-          <div className="mt-8 flex justify-between border-t pt-6">
+          <div className="mt-10 flex justify-between border-t pt-8">
             <button
-              className="rounded-xl border px-4 py-2 text-sm font-semibold text-muted-foreground hover:bg-muted disabled:opacity-40"
+              className="rounded-2xl border px-5 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted disabled:opacity-40"
               disabled={active === "S"}
               onClick={() => {
                 const idx = stages.findIndex((s) => s.key === active);
@@ -147,7 +147,7 @@ function Lesson() {
               ← Previous
             </button>
             <button
-              className="rounded-xl px-5 py-2 text-sm font-bold text-white shadow-sm transition-transform hover:scale-[1.02] disabled:opacity-40"
+              className="rounded-2xl px-6 py-2.5 text-sm font-bold text-white shadow-soft transition-transform hover:scale-[1.02] disabled:opacity-40"
               style={{ background: activeStage.color }}
               disabled={active === "R"}
               onClick={() => {
