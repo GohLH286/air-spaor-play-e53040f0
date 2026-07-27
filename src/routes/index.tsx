@@ -51,25 +51,25 @@ function Lesson() {
   const activeStage = stages.find((s) => s.key === active)!;
 
   return (
-    <main className="min-h-screen px-4 py-6 md:px-10 md:py-10">
+    <main className="min-h-screen px-5 py-8 md:px-12 md:py-14">
       <div className="mx-auto max-w-6xl">
-        <header className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <header className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Primary 3 Science · Diversity of Matter · Air
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Primary 4 Science · Diversity of Matter · Air
             </p>
-            <h1 className="mt-1 text-3xl font-bold md:text-4xl">Air Can Be Compressed</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              A SPAOR investigation for PLT · MOE Science Syllabus
+            <h1 className="mt-2 text-3xl font-bold md:text-4xl">Air Can Be Compressed</h1>
+            <p className="mt-1.5 text-sm text-muted-foreground">
+              A calm, guided SPAOR investigation for PLT · MOE Science Syllabus
             </p>
           </div>
-          <div className="flex items-center gap-2 rounded-full border bg-card px-4 py-2 shadow-sm">
+          <div className="flex items-center gap-3 rounded-full border bg-card px-5 py-2.5 shadow-soft">
             <span className="text-xs font-semibold text-muted-foreground">Lesson Progress</span>
-            <div className="flex gap-1">
+            <div className="flex gap-1.5">
               {stages.map((s) => (
                 <span
                   key={s.key}
-                  className="h-2 w-6 rounded-full transition-all"
+                  className="h-2.5 w-7 rounded-full transition-all duration-500"
                   style={{ background: s.key === active ? s.color : "var(--border)" }}
                 />
               ))}
