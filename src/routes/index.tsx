@@ -495,10 +495,10 @@ function ReflectionView({
               <button
                 key={a.id}
                 onClick={() => setChecked({ ...checked, [a.id]: !isOn })}
-                className="rounded-xl border-2 p-3 text-sm font-semibold transition-all"
+                className="rounded-[1.25rem] border-2 p-3.5 text-sm font-semibold transition-all duration-300 hover:shadow-soft"
                 style={{
                   borderColor: isOn ? "var(--reflection)" : "var(--border)",
-                  background: isOn ? "oklch(0.96 0.05 300)" : "var(--card)",
+                  background: isOn ? "oklch(0.97 0.04 300)" : "var(--card)",
                 }}
               >
                 {isOn ? "✓ " : ""}
@@ -510,13 +510,13 @@ function ReflectionView({
 
         {predicted && (
           <div
-            className="mt-5 rounded-xl p-4 text-sm"
+            className="mt-6 rounded-3xl p-5 text-sm"
             style={{
-              background: wasCorrect ? "oklch(0.95 0.07 145)" : "oklch(0.96 0.04 60)",
+              background: wasCorrect ? "oklch(0.96 0.05 150)" : "oklch(0.97 0.04 70)",
             }}
           >
             {wasCorrect ? (
-              <>🎉 Your prediction matched what we observed — air is squeezed into a smaller space!</>
+              <>Your prediction matched what we observed — air is squeezed into a smaller space!</>
             ) : (
               <>
                 Your first prediction was different from what we observed. That's how
@@ -536,12 +536,12 @@ function ReflectionView({
           value={reflection}
           onChange={(e) => setReflection(e.target.value)}
           placeholder="Today I learnt that air..."
-          className="mt-3 h-40 w-full resize-none rounded-2xl border-2 bg-background p-4 text-sm outline-none focus:border-[var(--reflection)]"
+          className="mt-4 h-40 w-full resize-none rounded-[1.5rem] border-2 bg-background p-5 text-sm outline-none transition-all focus:border-[var(--reflection)]"
         />
-        <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
+        <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
           <span>{reflection.length} characters</span>
           <button
-            className="rounded-lg bg-[var(--reflection)] px-4 py-2 text-xs font-bold text-white disabled:opacity-40"
+            className="rounded-xl bg-[var(--reflection)] px-5 py-2.5 text-xs font-bold text-white shadow-soft transition-all hover:scale-[1.02] disabled:opacity-40"
             disabled={!reflection.trim()}
             onClick={() => alert("Reflection saved (sample only).")}
           >
