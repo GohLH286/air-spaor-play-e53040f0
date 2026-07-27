@@ -363,33 +363,33 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
           <li>3. Push the plunger down slowly.</li>
           <li>4. Feel what happens as you push harder.</li>
         </ol>
-        <div className="mt-5 rounded-2xl bg-muted p-4 text-sm">
-          <p className="font-semibold">Try it here 👇</p>
+        <div className="mt-6 rounded-3xl bg-muted p-5 text-sm">
+          <p className="font-semibold">Try it here</p>
           <p className="mt-1 text-muted-foreground">
             Tap "Push plunger" to compress the air inside the sealed syringe.
           </p>
-          <div className="mt-3 flex gap-2">
+          <div className="mt-4 flex gap-3">
             <button
               onClick={() => setPushes(Math.min(maxPushes, pushes + 1))}
-              className="rounded-xl bg-[var(--action)] px-4 py-2 text-sm font-bold text-white shadow-sm hover:opacity-90"
+              className="rounded-2xl bg-[var(--action)] px-5 py-2.5 text-sm font-bold text-white shadow-soft transition-all hover:scale-[1.02] hover:opacity-90"
             >
               Push plunger
             </button>
             <button
               onClick={() => setPushes(0)}
-              className="rounded-xl border px-4 py-2 text-sm font-semibold hover:bg-background"
+              className="rounded-2xl border px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-background"
             >
               Reset
             </button>
           </div>
-          <p className="mt-3 text-xs text-muted-foreground">Pushes: {pushes} / {maxPushes}</p>
+          <p className="mt-4 text-xs text-muted-foreground">Pushes: {pushes} / {maxPushes}</p>
         </div>
       </div>
 
       <div className="flex flex-col items-center justify-center">
-        <div className="relative flex h-72 w-32 flex-col rounded-2xl border-4 border-slate-300 bg-white">
+        <div className="relative flex h-72 w-32 flex-col rounded-[1.5rem] border-4 border-[oklch(0.8_0.03_220)] bg-white shadow-soft">
           <div
-            className="w-full rounded-t-lg bg-slate-400 transition-all duration-500"
+            className="w-full rounded-t-[1.25rem] bg-[oklch(0.65_0.1_220)] transition-all duration-500"
             style={{ height: `${compression}%`, minHeight: 12 }}
           />
           <div className="relative flex-1 overflow-hidden">
@@ -398,15 +398,15 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
                 key={i}
                 className="absolute h-2 w-2 rounded-full transition-all duration-500"
                 style={{
-                  background: `oklch(0.6 0.16 235 / ${0.5 + pushes * 0.15})`,
+                  background: `oklch(0.65 0.1 220 / ${0.45 + pushes * 0.15})`,
                   left: `${(i * 37) % 90}%`,
                   top: `${(i * 53) % 90}%`,
                 }}
               />
             ))}
           </div>
-          <div className="h-3 w-full bg-slate-300" />
-          <div className="mx-auto h-6 w-4 bg-slate-400" />
+          <div className="h-3 w-full bg-[oklch(0.8_0.03_220)]" />
+          <div className="mx-auto h-6 w-4 bg-[oklch(0.65_0.05_220)]" />
         </div>
         <p className="mt-3 text-xs font-semibold text-muted-foreground">
           Air particles inside the sealed syringe
