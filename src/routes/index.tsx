@@ -6,17 +6,17 @@ import litReviewInfographic from "@/assets/lit-review-infographic.jpg.asset.json
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Air Can Be Compressed — P3 Science SPAOR Lesson" },
+      { title: "Air Can Be Compressed — P4 Science SPAOR Lesson" },
       {
         name: "description",
         content:
-          "Interactive Primary 3 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
+          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
       },
-      { property: "og:title", content: "Air Can Be Compressed — P3 Science SPAOR Lesson" },
+      { property: "og:title", content: "Air Can Be Compressed — P4 Science SPAOR Lesson" },
       {
         property: "og:description",
         content:
-          "Interactive Primary 3 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
+          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
