@@ -170,12 +170,15 @@ function Lesson() {
 
 function SituationView() {
   return (
-    <div className="space-y-6">
-      <div className="rounded-2xl border-l-4 bg-muted p-4" style={{ borderColor: "var(--situation)" }}>
+    <div className="space-y-8">
+      <div
+        className="rounded-3xl border-l-[6px] bg-[oklch(0.98_0.02_80)] p-6"
+        style={{ borderColor: "var(--situation)" }}
+      >
         <p className="text-xs font-bold uppercase tracking-widest text-[var(--situation)]">
           For Teachers · PLT Briefing
         </p>
-        <p className="mt-1 text-sm">
+        <p className="mt-2 text-sm leading-relaxed">
           Before starting the lesson with pupils, go through the slides below as a team to
           align on <span className="font-semibold">what a Learning Circle is</span>, the SPAOR
           cycle, and how it frames today's investigation on air.
@@ -184,18 +187,18 @@ function SituationView() {
 
       <SlideDeck />
 
-      <div className="grid gap-6 md:grid-cols-2 md:items-center">
+      <div className="grid gap-8 md:grid-cols-2 md:items-center">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
             Lesson Situation (for pupils)
           </p>
-          <p className="mt-2 text-base leading-relaxed md:text-lg">
+          <p className="mt-3 text-base leading-relaxed md:text-lg">
             Mrs Tan is pumping up a bicycle tyre before school. When she presses the pump
             handle down, she notices it becomes <span className="font-bold">harder and harder</span>{" "}
             to push, even though the pump is closed at the bottom.
           </p>
-          <div className="mt-4 rounded-2xl bg-muted p-4">
-            <p className="text-sm font-semibold text-muted-foreground">Think about it 💭</p>
+          <div className="mt-5 rounded-3xl bg-muted p-5">
+            <p className="text-sm font-semibold text-muted-foreground">Think about it</p>
             <p className="mt-1 text-sm">
               What is inside the pump? Where does it go when Mrs Tan pushes the handle?
             </p>
@@ -203,8 +206,8 @@ function SituationView() {
         </div>
         <div className="flex items-center justify-center">
           <div
-            className="relative flex h-64 w-64 items-center justify-center rounded-3xl"
-            style={{ background: "oklch(0.94 0.05 220)" }}
+            className="relative flex h-64 w-64 items-center justify-center rounded-[2rem] shadow-soft"
+            style={{ background: "oklch(0.95 0.04 220)" }}
           >
             <svg viewBox="0 0 200 200" className="h-full w-full p-6">
               <rect x="80" y="30" width="40" height="120" rx="6" fill="oklch(0.85 0.03 240)" />
