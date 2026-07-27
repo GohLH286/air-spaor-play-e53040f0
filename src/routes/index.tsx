@@ -300,48 +300,50 @@ function ProblemView({
 
 
       <div>
-      <p className="text-lg font-semibold">
-        Focus question: Can air be squeezed into a smaller space?
-      </p>
-      <p className="mt-2 text-sm text-muted-foreground">
-        Make a prediction before we investigate. There is no wrong answer at this stage —
-        we are being scientists!
-      </p>
-      <div className="mt-5 grid gap-3 md:grid-cols-2">
-
-        {options.map((o) => {
-          const isSel = predicted === o.id;
-          return (
-            <button
-              key={o.id}
-              onClick={() => setPredicted(o.id)}
-              className="flex items-start gap-3 rounded-2xl border-2 p-4 text-left transition-all hover:-translate-y-0.5"
-              style={{
-                borderColor: isSel ? "var(--problem)" : "var(--border)",
-                background: isSel ? "oklch(0.97 0.04 25)" : "var(--card)",
-              }}
-            >
-              <span
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-bold"
+        <p className="text-lg font-semibold">
+          Focus question: Can air be squeezed into a smaller space?
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Make a prediction before we investigate. There is no wrong answer at this stage —
+          we are being scientists!
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {options.map((o) => {
+            const isSel = predicted === o.id;
+            return (
+              <button
+                key={o.id}
+                onClick={() => setPredicted(o.id)}
+                className="flex items-start gap-3 rounded-[1.5rem] border-2 p-5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft"
                 style={{
-                  background: isSel ? "var(--problem)" : "var(--muted)",
-                  color: isSel ? "white" : "var(--foreground)",
+                  borderColor: isSel ? "var(--problem)" : "var(--border)",
+                  background: isSel ? "oklch(0.98 0.03 40)" : "var(--card)",
                 }}
               >
-                {o.id.toUpperCase()}
-              </span>
-              <span className="text-sm font-medium">{o.text}</span>
-            </button>
-          );
-        })}
-      </div>
-      {predicted && (
-        <div className="mt-5 rounded-2xl border-l-4 bg-muted p-4" style={{ borderColor: "var(--problem)" }}>
-          <p className="text-sm">
-            ✔ Prediction recorded. Let's test it in the <span className="font-bold">Action</span> stage!
-          </p>
+                <span
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-all"
+                  style={{
+                    background: isSel ? "var(--problem)" : "var(--muted)",
+                    color: isSel ? "white" : "var(--foreground)",
+                  }}
+                >
+                  {o.id.toUpperCase()}
+                </span>
+                <span className="text-sm font-medium leading-relaxed">{o.text}</span>
+              </button>
+            );
+          })}
         </div>
-      )}
+        {predicted && (
+          <div
+            className="mt-6 rounded-3xl border-l-[6px] p-5"
+            style={{ borderColor: "var(--problem)", background: "oklch(0.98 0.03 40)" }}
+          >
+            <p className="text-sm">
+              Prediction recorded. Let's test it in the <span className="font-bold">Action</span> stage!
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
