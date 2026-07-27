@@ -422,18 +422,18 @@ function ObservationView({ pushes }: { pushes: number }) {
     <div className="grid gap-6 md:grid-cols-2">
       <div>
         <p className="font-semibold">What did you notice?</p>
-        <ul className="mt-3 space-y-3 text-sm">
+        <ul className="mt-4 space-y-3 text-sm">
           <ObsItem checked={observed} text="The plunger moved down — the air took up less space." />
           <ObsItem checked={observed} text="It became harder to push as the plunger went down." />
           <ObsItem checked={observed} text="No air escaped — the nozzle was sealed." />
           <ObsItem checked={pushes >= 3} text="When released, the plunger sprang back up." />
         </ul>
       </div>
-      <div className="rounded-2xl p-6" style={{ background: "oklch(0.96 0.04 235)" }}>
+      <div className="rounded-[2rem] p-7" style={{ background: "oklch(0.96 0.03 220)" }}>
         <p className="text-sm font-bold uppercase tracking-widest text-[var(--observation)]">
           Science Concept
         </p>
-        <p className="mt-2 text-lg font-semibold leading-snug">
+        <p className="mt-3 text-lg font-semibold leading-snug">
           Air is <span className="underline decoration-[var(--observation)] decoration-4">matter</span>.
           It takes up space and can be <span className="font-bold">compressed</span> — squeezed
           into a smaller space.
@@ -449,14 +449,14 @@ function ObservationView({ pushes }: { pushes: number }) {
 
 function ObsItem({ checked, text }: { checked: boolean; text: string }) {
   return (
-    <li className="flex items-start gap-3 rounded-xl bg-muted p-3">
+    <li className="flex items-start gap-3 rounded-2xl bg-muted p-4">
       <span
         className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
         style={{ background: checked ? "var(--action)" : "var(--border)" }}
       >
         {checked ? "✓" : ""}
       </span>
-      <span className="text-sm">{text}</span>
+      <span className="text-sm leading-relaxed">{text}</span>
     </li>
   );
 }
