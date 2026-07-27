@@ -238,85 +238,63 @@ function ProblemView({
     { id: "d", text: "The air turns into water." },
   ];
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div
-        className="relative overflow-hidden rounded-2xl p-5 md:p-6"
+        className="rounded-[2rem] border p-6 shadow-soft md:p-8"
         style={{
           background:
-            "radial-gradient(120% 90% at 8% 0%, oklch(0.32 0.1 250) 0%, oklch(0.18 0.05 255) 45%, oklch(0.13 0.03 260) 100%)",
-          border: "1px solid oklch(1 0 0 / 0.1)",
+            "linear-gradient(160deg, oklch(0.98 0.03 210) 0%, oklch(0.97 0.02 190) 60%, oklch(0.96 0.03 90) 100%)",
         }}
       >
-        {/* HUD grid overlay */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.14]"
-          style={{
-            backgroundImage:
-              "linear-gradient(oklch(0.85 0.13 200 / 0.5) 1px, transparent 1px), linear-gradient(90deg, oklch(0.85 0.13 200 / 0.5) 1px, transparent 1px)",
-            backgroundSize: "34px 34px",
-            maskImage: "radial-gradient(90% 70% at 50% 0%, black, transparent 85%)",
-          }}
-        />
-        <div className="relative">
-          <div className="flex items-center gap-2">
-            <div className="h-px w-8" style={{ background: "oklch(0.8 0.14 200)" }} />
-            <p
-              className="text-[10px] font-bold uppercase tracking-[0.2em]"
-              style={{ color: "oklch(0.85 0.13 200)" }}
-            >
-              For Educators · Literature Review
-            </p>
-          </div>
-          <h3
-            className="mt-1.5 text-lg font-bold tracking-tight md:text-2xl"
-            style={{ color: "oklch(0.99 0 0)" }}
-          >
-            Effective Strategies for Teaching Air as a Gas
-          </h3>
-          <p className="mt-1 text-sm" style={{ color: "oklch(0.75 0.02 250)" }}>
-            Four research pillars shaping this lesson — visual summary.
+        <div className="flex items-center gap-2">
+          <div className="h-px w-6 bg-[oklch(0.65_0.1_200)]" />
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[oklch(0.55_0.08_200)]">
+            For Educators · Literature Review
           </p>
+        </div>
+        <h3 className="mt-2 text-lg font-bold tracking-tight text-foreground md:text-2xl">
+          Effective Strategies for Teaching Air as a Gas
+        </h3>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Four research pillars shaping this lesson — visual summary.
+        </p>
 
-          <div className="relative mx-auto mt-5 max-w-md">
-            <div
-              className="absolute -inset-1 rounded-2xl opacity-40 blur"
-              style={{
-                background:
-                  "linear-gradient(120deg, oklch(0.72 0.15 200), oklch(0.6 0.2 280), oklch(0.75 0.16 70))",
-              }}
+        <div className="relative mx-auto mt-6 max-w-md">
+          <div
+            className="absolute -inset-2 rounded-[1.5rem] opacity-30 blur-2xl"
+            style={{
+              background:
+                "linear-gradient(120deg, oklch(0.8 0.08 200), oklch(0.78 0.07 170), oklch(0.82 0.06 80))",
+            }}
+          />
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-white/60 shadow-soft">
+            <img
+              src={litReviewInfographic.url}
+              alt="Literature review infographic: effective strategies for teaching air as a gas — inquiry-based learning (SingTeach NIE 2023), hands-on syringe experiments (TERC 2019), MOE primary science syllabus air concepts, and active learning with visuals (ASCD 2022)"
+              className="block w-full"
+              loading="lazy"
             />
-            <div
-              className="relative overflow-hidden rounded-2xl"
-              style={{ border: "1px solid oklch(1 0 0 / 0.14)" }}
-            >
-              <img
-                src={litReviewInfographic.url}
-                alt="Literature review infographic: effective strategies for teaching air as a gas — inquiry-based learning (SingTeach NIE 2023), hands-on syringe experiments (TERC 2019), MOE primary science syllabus air concepts, and active learning with visuals (ASCD 2022)"
-                className="block w-full"
-                loading="lazy"
-              />
-            </div>
           </div>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {[
-              "Inquiry-Based Experiments",
-              "Visual Representations",
-              "Collaborative Discussion",
-            ].map((k) => (
-              <span
-                key={k}
-                className="rounded-full px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-wider"
-                style={{
-                  color: "oklch(0.88 0.1 200)",
-                  border: "1px solid oklch(0.7 0.13 210 / 0.45)",
-                  background: "oklch(0.7 0.13 210 / 0.12)",
-                }}
-              >
-                {k}
-              </span>
-            ))}
-          </div>
+        </div>
 
+        <div className="mt-5 flex flex-wrap gap-2">
+          {[
+            "Inquiry-Based Experiments",
+            "Visual Representations",
+            "Collaborative Discussion",
+          ].map((k) => (
+            <span
+              key={k}
+              className="rounded-full px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-wider"
+              style={{
+                color: "oklch(0.45 0.06 200)",
+                border: "1px solid oklch(0.75 0.05 200 / 0.4)",
+                background: "oklch(1 0 0 / 0.55)",
+              }}
+            >
+              {k}
+            </span>
+          ))}
         </div>
       </div>
 
