@@ -77,21 +77,21 @@ function Lesson() {
           </div>
         </header>
 
-        <nav className="mb-6 grid grid-cols-5 gap-2 rounded-2xl bg-card p-2 shadow-[var(--shadow-soft)]">
+        <nav className="mb-8 grid grid-cols-5 gap-3 rounded-[2rem] bg-card p-3 shadow-[var(--shadow-soft)]">
           {stages.map((s) => {
             const isActive = s.key === active;
             return (
               <button
                 key={s.key}
                 onClick={() => setActive(s.key)}
-                className="group flex flex-col items-center gap-1 rounded-xl px-2 py-3 text-center transition-all"
+                className="group flex flex-col items-center gap-2 rounded-[1.5rem] px-2 py-4 text-center transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   background: isActive ? s.color : "transparent",
                   color: isActive ? "white" : "var(--foreground)",
                 }}
               >
                 <span
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold"
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-all duration-300"
                   style={{
                     background: isActive ? "rgba(255,255,255,0.25)" : s.tint,
                     color: isActive ? "white" : s.color,
@@ -99,7 +99,7 @@ function Lesson() {
                 >
                   {s.key}
                 </span>
-                <span className="text-[11px] font-bold uppercase tracking-wider md:text-xs">
+                <span className="text-[11px] font-semibold uppercase tracking-wider md:text-xs">
                   {s.label}
                 </span>
               </button>
