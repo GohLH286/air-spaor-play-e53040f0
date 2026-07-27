@@ -34,11 +34,11 @@ const stages: {
   color: string;
   tint: string;
 }[] = [
-  { key: "S", label: "Situation", title: "Situation", color: "var(--situation)", tint: "oklch(0.97 0.04 60)" },
-  { key: "P", label: "Problem", title: "Problem", color: "var(--problem)", tint: "oklch(0.97 0.04 25)" },
-  { key: "A", label: "Action", title: "Action", color: "var(--action)", tint: "oklch(0.97 0.04 145)" },
-  { key: "O", label: "Observation", title: "Observation", color: "var(--observation)", tint: "oklch(0.97 0.03 235)" },
-  { key: "R", label: "Reflection", title: "Reflection", color: "var(--reflection)", tint: "oklch(0.97 0.04 300)" },
+  { key: "S", label: "Situation", title: "Situation", color: "var(--situation)", tint: "oklch(0.97 0.03 70)" },
+  { key: "P", label: "Problem", title: "Problem", color: "var(--problem)", tint: "oklch(0.97 0.03 35)" },
+  { key: "A", label: "Action", title: "Action", color: "var(--action)", tint: "oklch(0.96 0.03 155)" },
+  { key: "O", label: "Observation", title: "Observation", color: "var(--observation)", tint: "oklch(0.96 0.03 220)" },
+  { key: "R", label: "Reflection", title: "Reflection", color: "var(--reflection)", tint: "oklch(0.97 0.03 300)" },
 ];
 
 function Lesson() {
