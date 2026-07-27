@@ -160,7 +160,7 @@ function Lesson() {
           </div>
         </section>
 
-        <p className="mt-6 text-center text-xs text-muted-foreground">
+        <p className="mt-8 text-center text-xs text-muted-foreground">
           Sample lesson · SPAOR pedagogical framework · Sign-in and class saving coming soon
         </p>
       </div>
