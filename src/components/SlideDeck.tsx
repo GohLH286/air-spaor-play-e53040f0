@@ -38,8 +38,8 @@ export function SlideDeck() {
   const total = slides.length;
 
   return (
-    <div className="rounded-2xl border bg-card p-3 shadow-sm">
-      <div className="flex items-center justify-between px-1 pb-2">
+    <div className="rounded-[2rem] border bg-card p-4 shadow-soft md:p-5">
+      <div className="flex items-center justify-between px-1 pb-3">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
             Teacher Briefing Deck
@@ -49,13 +49,13 @@ export function SlideDeck() {
         <a
           href={deck.url}
           download
-          className="rounded-lg border px-3 py-1.5 text-xs font-semibold hover:bg-muted"
+          className="rounded-xl border px-3.5 py-2 text-xs font-semibold transition-colors hover:bg-muted"
         >
-          ⬇ Download .pptx
+          Download .pptx
         </a>
       </div>
 
-      <div className="relative overflow-hidden rounded-xl border bg-black/5">
+      <div className="relative overflow-hidden rounded-[1.5rem] border bg-muted/50">
         <img
           src={slides[i]}
           alt={`Learning Circle slide ${i + 1} of ${total}`}
@@ -63,11 +63,11 @@ export function SlideDeck() {
         />
       </div>
 
-      <div className="mt-3 flex items-center justify-between gap-2">
+      <div className="mt-4 flex items-center justify-between gap-3">
         <button
           onClick={() => setI((n) => Math.max(0, n - 1))}
           disabled={i === 0}
-          className="rounded-lg border px-3 py-1.5 text-sm font-semibold hover:bg-muted disabled:opacity-40"
+          className="rounded-xl border px-4 py-2 text-sm font-semibold transition-colors hover:bg-muted disabled:opacity-40"
         >
           ← Prev
         </button>
@@ -77,21 +77,21 @@ export function SlideDeck() {
         <button
           onClick={() => setI((n) => Math.min(total - 1, n + 1))}
           disabled={i === total - 1}
-          className="rounded-lg border px-3 py-1.5 text-sm font-semibold hover:bg-muted disabled:opacity-40"
+          className="rounded-xl border px-4 py-2 text-sm font-semibold transition-colors hover:bg-muted disabled:opacity-40"
         >
           Next →
         </button>
       </div>
 
-      <div className="mt-3 flex gap-1 overflow-x-auto pb-1">
+      <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
         {slides.map((url, idx) => (
           <button
             key={url}
             onClick={() => setI(idx)}
-            className="shrink-0 overflow-hidden rounded-md border-2 transition-all"
+            className="shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-300"
             style={{
               borderColor: idx === i ? "var(--situation)" : "transparent",
-              opacity: idx === i ? 1 : 0.6,
+              opacity: idx === i ? 1 : 0.55,
             }}
           >
             <img src={url} alt="" className="h-12 w-20 object-cover" />
