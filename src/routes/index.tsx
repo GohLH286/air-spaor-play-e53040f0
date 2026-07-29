@@ -637,6 +637,7 @@ function ReflectionView({
           </button>
         </div>
       </div>
+      </div>
     </div>
   );
 }
