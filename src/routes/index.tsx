@@ -511,6 +511,24 @@ function ObservationView({ pushes }: { pushes: number }) {
         </p>
       </div>
     </div>
+
+      <UploadZone
+        label="Observe · My uploads"
+        color="var(--observation)"
+        slots={[
+          {
+            id: "sls-remedial",
+            title: "SLS remedial lesson",
+            hint: "Upload the SLS remedial lesson package or link screenshot.",
+          },
+          {
+            id: "salis-bot",
+            title: "SALIS chatbot — 1-to-1 pupil interaction",
+            hint: "Upload chatbot prompts, transcripts or setup notes from SLS.",
+          },
+        ]}
+      />
+    </div>
   );
 }
 
