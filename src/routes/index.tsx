@@ -12,13 +12,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
+          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Scan, Plan, Action, Observe, Review).",
       },
       { property: "og:title", content: "Air Can Be Compressed — P4 Science SPAOR Lesson" },
       {
         property: "og:description",
         content:
-          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
+          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Scan, Plan, Action, Observe, Review).",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
