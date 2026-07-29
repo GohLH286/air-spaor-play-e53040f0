@@ -222,6 +222,23 @@ function SituationView() {
           </div>
         </div>
       </div>
+
+      <UploadZone
+        label="Scan · My uploads"
+        color="var(--situation)"
+        slots={[
+          {
+            id: "aoc",
+            title: "Area of Concern (AOC)",
+            hint: "Upload your AOC write-up, baseline data or notes on the learning gap.",
+          },
+          {
+            id: "scan-evidence",
+            title: "Supporting evidence",
+            hint: "Class observations, pupil work samples or survey results.",
+          },
+        ]}
+      />
     </div>
   );
 }
