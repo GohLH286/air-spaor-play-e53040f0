@@ -450,6 +450,35 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
         </p>
       </div>
     </div>
+
+      <UploadZone
+        label="Action · My uploads"
+        color="var(--action)"
+        slots={[
+          {
+            id: "sponge-video",
+            title: "Experiment video — sponge balls as air particles",
+            hint: "Upload the recording of the sponge-ball demonstration.",
+            accept: "video/*",
+          },
+          {
+            id: "worksheets",
+            title: "Differentiated worksheets (HA / MA / LA)",
+            hint: "Upload one file per ability group.",
+          },
+          {
+            id: "pre-post",
+            title: "Pre-test & post-test worksheets",
+            hint: "Upload both test papers used for the cycle.",
+          },
+          {
+            id: "data-analysis",
+            title: "Data analysis — closing the learning gap",
+            hint: "Upload the pre/post comparison, charts or gap analysis.",
+          },
+        ]}
+      />
+    </div>
   );
 }
 
