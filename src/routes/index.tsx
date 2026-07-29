@@ -567,7 +567,10 @@ function ReflectionView({
   ];
   const wasCorrect = predicted === "b";
   return (
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="space-y-8">
+      <KissBoard />
+
+      <div className="grid gap-6 md:grid-cols-2">
       <div>
         <p className="font-semibold">Where do we see this in real life?</p>
         <p className="mt-1 text-sm text-muted-foreground">
