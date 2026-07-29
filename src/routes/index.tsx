@@ -390,6 +390,7 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
   const maxPushes = 3;
   const compression = (pushes / maxPushes) * 100;
   return (
+    <div className="space-y-8">
     <div className="grid gap-8 md:grid-cols-2">
       <div>
         <p className="font-semibold">Experiment: The Sealed Syringe</p>
