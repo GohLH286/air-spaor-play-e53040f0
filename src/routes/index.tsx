@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SlideDeck } from "@/components/SlideDeck";
+import { UploadZone } from "@/components/UploadZone";
+import { KissBoard } from "@/components/KissBoard";
 import litReviewInfographic from "@/assets/lit-review-infographic.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -10,13 +12,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
+          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Scan, Plan, Action, Observe, Review).",
       },
       { property: "og:title", content: "Air Can Be Compressed — P4 Science SPAOR Lesson" },
       {
         property: "og:description",
         content:
-          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Situation, Problem, Action, Observation, Reflection).",
+          "Interactive Primary 4 science lesson on air compression using the SPAOR method (Scan, Plan, Action, Observe, Review).",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -34,11 +36,11 @@ const stages: {
   color: string;
   tint: string;
 }[] = [
-  { key: "S", label: "Situation", title: "Situation", color: "var(--situation)", tint: "oklch(0.97 0.03 70)" },
-  { key: "P", label: "Problem", title: "Problem", color: "var(--problem)", tint: "oklch(0.97 0.03 35)" },
+  { key: "S", label: "Scan", title: "Scan", color: "var(--situation)", tint: "oklch(0.97 0.03 70)" },
+  { key: "P", label: "Plan", title: "Plan", color: "var(--problem)", tint: "oklch(0.97 0.03 35)" },
   { key: "A", label: "Action", title: "Action", color: "var(--action)", tint: "oklch(0.96 0.03 155)" },
-  { key: "O", label: "Observation", title: "Observation", color: "var(--observation)", tint: "oklch(0.96 0.03 220)" },
-  { key: "R", label: "Reflection", title: "Reflection", color: "var(--reflection)", tint: "oklch(0.97 0.03 300)" },
+  { key: "O", label: "Observe", title: "Observe", color: "var(--observation)", tint: "oklch(0.96 0.03 220)" },
+  { key: "R", label: "Review", title: "Review", color: "var(--reflection)", tint: "oklch(0.97 0.03 300)" },
 ];
 
 function Lesson() {
@@ -220,6 +222,23 @@ function SituationView() {
           </div>
         </div>
       </div>
+
+      <UploadZone
+        label="Scan · My uploads"
+        color="var(--situation)"
+        slots={[
+          {
+            id: "aoc",
+            title: "Area of Concern (AOC)",
+            hint: "Upload your AOC write-up, baseline data or notes on the learning gap.",
+          },
+          {
+            id: "scan-evidence",
+            title: "Supporting evidence",
+            hint: "Class observations, pupil work samples or survey results.",
+          },
+        ]}
+      />
     </div>
   );
 }
@@ -298,6 +317,23 @@ function ProblemView({
         </div>
       </div>
 
+      <UploadZone
+        label="Plan · My uploads"
+        color="var(--problem)"
+        slots={[
+          {
+            id: "lit-review",
+            title: "Literature review",
+            hint: "Upload your literature review document or infographic.",
+          },
+          {
+            id: "lesson-plan",
+            title: "Lesson plan / intervention design",
+            hint: "Upload the planned SPAOR lesson sequence and success criteria.",
+          },
+        ]}
+      />
+
 
       <div>
         <p className="text-lg font-semibold">
@@ -354,6 +390,7 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
   const maxPushes = 3;
   const compression = (pushes / maxPushes) * 100;
   return (
+    <div className="space-y-8">
     <div className="grid gap-8 md:grid-cols-2">
       <div>
         <p className="font-semibold">Experiment: The Sealed Syringe</p>
@@ -413,12 +450,42 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
         </p>
       </div>
     </div>
+
+      <UploadZone
+        label="Action · My uploads"
+        color="var(--action)"
+        slots={[
+          {
+            id: "sponge-video",
+            title: "Experiment video — sponge balls as air particles",
+            hint: "Upload the recording of the sponge-ball demonstration.",
+            accept: "video/*",
+          },
+          {
+            id: "worksheets",
+            title: "Differentiated worksheets (HA / MA / LA)",
+            hint: "Upload one file per ability group.",
+          },
+          {
+            id: "pre-post",
+            title: "Pre-test & post-test worksheets",
+            hint: "Upload both test papers used for the cycle.",
+          },
+          {
+            id: "data-analysis",
+            title: "Data analysis — closing the learning gap",
+            hint: "Upload the pre/post comparison, charts or gap analysis.",
+          },
+        ]}
+      />
+    </div>
   );
 }
 
 function ObservationView({ pushes }: { pushes: number }) {
   const observed = pushes > 0;
   return (
+    <div className="space-y-8">
     <div className="grid gap-6 md:grid-cols-2">
       <div>
         <p className="font-semibold">What did you notice?</p>
@@ -443,6 +510,24 @@ function ObservationView({ pushes }: { pushes: number }) {
           be pushed closer together when force is applied.
         </p>
       </div>
+    </div>
+
+      <UploadZone
+        label="Observe · My uploads"
+        color="var(--observation)"
+        slots={[
+          {
+            id: "sls-remedial",
+            title: "SLS remedial lesson",
+            hint: "Upload the SLS remedial lesson package or link screenshot.",
+          },
+          {
+            id: "salis-bot",
+            title: "SALIS chatbot — 1-to-1 pupil interaction",
+            hint: "Upload chatbot prompts, transcripts or setup notes from SLS.",
+          },
+        ]}
+      />
     </div>
   );
 }
@@ -482,7 +567,10 @@ function ReflectionView({
   ];
   const wasCorrect = predicted === "b";
   return (
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="space-y-8">
+      <KissBoard />
+
+      <div className="grid gap-6 md:grid-cols-2">
       <div>
         <p className="font-semibold">Where do we see this in real life?</p>
         <p className="mt-1 text-sm text-muted-foreground">
@@ -548,6 +636,7 @@ function ReflectionView({
             Save reflection
           </button>
         </div>
+      </div>
       </div>
     </div>
   );
