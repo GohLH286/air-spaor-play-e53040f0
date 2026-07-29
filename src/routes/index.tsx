@@ -485,6 +485,7 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
 function ObservationView({ pushes }: { pushes: number }) {
   const observed = pushes > 0;
   return (
+    <div className="space-y-8">
     <div className="grid gap-6 md:grid-cols-2">
       <div>
         <p className="font-semibold">What did you notice?</p>
