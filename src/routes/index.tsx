@@ -317,6 +317,23 @@ function ProblemView({
         </div>
       </div>
 
+      <UploadZone
+        label="Plan · My uploads"
+        color="var(--problem)"
+        slots={[
+          {
+            id: "lit-review",
+            title: "Literature review",
+            hint: "Upload your literature review document or infographic.",
+          },
+          {
+            id: "lesson-plan",
+            title: "Lesson plan / intervention design",
+            hint: "Upload the planned SPAOR lesson sequence and success criteria.",
+          },
+        ]}
+      />
+
 
       <div>
         <p className="text-lg font-semibold">
