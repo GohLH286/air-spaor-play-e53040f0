@@ -63,14 +63,52 @@
   --gradient-sunrise: linear-gradient(135deg, oklch(0.95 0.04 220) 0%, oklch(0.96 0.03 90) 100%);
   --shadow-soft: 0 14px 40px -16px oklch(0.45 0.08 240 / 0.18);
   --shadow-glow: 0 0 40px -12px oklch(0.75 0.12 210 / 0.35);
+
+  /* futuristic backdrop */
+  --grid-line: oklch(0.62 0.13 230 / 0.16);
+  --grid-size: 44px;
+  --gradient-future: radial-gradient(900px 520px at 12% -8%, oklch(0.86 0.13 200 / 0.55), transparent 60%),
+    radial-gradient(760px 520px at 92% 4%, oklch(0.82 0.14 300 / 0.45), transparent 62%),
+    radial-gradient(900px 620px at 50% 108%, oklch(0.88 0.12 170 / 0.42), transparent 65%),
+    linear-gradient(175deg, oklch(0.96 0.03 235) 0%, oklch(0.98 0.015 260) 55%, oklch(0.97 0.02 190) 100%);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
   body {
-    background: var(--gradient-sky);
+    background: var(--gradient-future);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    position: relative;
   }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    mask-image: radial-gradient(120% 90% at 50% 0%, oklch(0 0 0 / 0.9), transparent 78%);
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      oklch(0.55 0.1 240 / 0.045) 0px,
+      oklch(0.55 0.1 240 / 0.045) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    opacity: 0.6;
+  }
+  #root, body > * { position: relative; z-index: 1; }
   h1,h2,h3 { font-family: var(--font-display); letter-spacing: -0.02em; font-weight: 700; }
 }
