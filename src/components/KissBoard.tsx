@@ -95,7 +95,7 @@ export function KissBoard() {
                     style={{ borderColor: on ? q.color : "transparent" }}
                   >
                     <span
-                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-white"
+                      className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-[oklch(0.18_0.04_260)]"
                       style={{ background: on ? q.color : "var(--border)" }}
                     >
                       {on ? "✓" : ""}
@@ -125,7 +125,7 @@ export function KissBoard() {
               <button
                 type="submit"
                 aria-label={`Add item to ${q.title}`}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white shadow-soft transition-transform hover:scale-105"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-transform hover:scale-105"
                 style={{ background: q.color }}
               >
                 +

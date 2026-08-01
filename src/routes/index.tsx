@@ -115,7 +115,7 @@ function Lesson() {
         >
           <div className="mb-8 flex items-center gap-4">
             <span
-              className="flex h-11 w-11 items-center justify-center rounded-full text-lg font-bold text-white shadow-soft"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-lg font-bold text-[oklch(0.18_0.04_260)] shadow-soft"
               style={{ background: activeStage.color }}
             >
               {activeStage.key}
@@ -149,7 +149,7 @@ function Lesson() {
               ← Previous
             </button>
             <button
-              className="rounded-2xl px-6 py-2.5 text-sm font-bold text-white shadow-soft transition-transform hover:scale-[1.02] disabled:opacity-40"
+              className="rounded-2xl px-6 py-2.5 text-sm font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-transform hover:scale-[1.02] disabled:opacity-40"
               style={{ background: activeStage.color }}
               disabled={active === "R"}
               onClick={() => {
@@ -408,7 +408,7 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
           <div className="mt-4 flex gap-3">
             <button
               onClick={() => setPushes(Math.min(maxPushes, pushes + 1))}
-              className="rounded-2xl bg-[var(--action)] px-5 py-2.5 text-sm font-bold text-white shadow-soft transition-all hover:scale-[1.02] hover:opacity-90"
+              className="rounded-2xl bg-[var(--action)] px-5 py-2.5 text-sm font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-all hover:scale-[1.02] hover:opacity-90"
             >
               Push plunger
             </button>
@@ -536,7 +536,7 @@ function ObsItem({ checked, text }: { checked: boolean; text: string }) {
   return (
     <li className="flex items-start gap-3 rounded-2xl bg-muted p-4">
       <span
-        className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+        className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold text-[oklch(0.18_0.04_260)]"
         style={{ background: checked ? "var(--action)" : "var(--border)" }}
       >
         {checked ? "✓" : ""}
@@ -629,7 +629,7 @@ function ReflectionView({
         <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
           <span>{reflection.length} characters</span>
           <button
-            className="rounded-xl bg-[var(--reflection)] px-5 py-2.5 text-xs font-bold text-white shadow-soft transition-all hover:scale-[1.02] disabled:opacity-40"
+            className="rounded-xl bg-[var(--reflection)] px-5 py-2.5 text-xs font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-all hover:scale-[1.02] disabled:opacity-40"
             disabled={!reflection.trim()}
             onClick={() => alert("Reflection saved (sample only).")}
           >
