@@ -6,7 +6,7 @@ const quadrants = [
     title: "Keep",
     hint: "What worked well and should continue",
     color: "var(--action)",
-    tint: "oklch(0.96 0.03 155)",
+    tint: "oklch(0.26 0.045 155)",
     suggestions: [
       "SPAOR structure for the lesson",
       "Sponge-ball particle demonstration",
@@ -18,7 +18,7 @@ const quadrants = [
     title: "Improve",
     hint: "What needs refining next round",
     color: "var(--situation)",
-    tint: "oklch(0.97 0.03 70)",
+    tint: "oklch(0.26 0.045 70)",
     suggestions: [
       "Clarity of pre-test questions",
       "Time given for pupil discussion",
@@ -30,7 +30,7 @@ const quadrants = [
     title: "Stay",
     hint: "What to hold steady / keep watching",
     color: "var(--observation)",
-    tint: "oklch(0.96 0.03 220)",
+    tint: "oklch(0.26 0.045 220)",
     suggestions: [
       "Same PLT observation protocol",
       "Learning-gap tracking sheet",
@@ -42,7 +42,7 @@ const quadrants = [
     title: "Stop",
     hint: "What to drop from the next cycle",
     color: "var(--problem)",
-    tint: "oklch(0.97 0.03 35)",
+    tint: "oklch(0.26 0.045 35)",
     suggestions: [
       "Teacher-led explanation before inquiry",
       "Single worksheet for all abilities",
