@@ -36,11 +36,11 @@ const stages: {
   color: string;
   tint: string;
 }[] = [
-  { key: "S", label: "Scan", title: "Scan", color: "var(--situation)", tint: "oklch(0.97 0.03 70)" },
-  { key: "P", label: "Plan", title: "Plan", color: "var(--problem)", tint: "oklch(0.97 0.03 35)" },
-  { key: "A", label: "Action", title: "Action", color: "var(--action)", tint: "oklch(0.96 0.03 155)" },
-  { key: "O", label: "Observe", title: "Observe", color: "var(--observation)", tint: "oklch(0.96 0.03 220)" },
-  { key: "R", label: "Review", title: "Review", color: "var(--reflection)", tint: "oklch(0.97 0.03 300)" },
+  { key: "S", label: "Scan", title: "Scan", color: "var(--situation)", tint: "oklch(0.26 0.045 70)" },
+  { key: "P", label: "Plan", title: "Plan", color: "var(--problem)", tint: "oklch(0.26 0.045 35)" },
+  { key: "A", label: "Action", title: "Action", color: "var(--action)", tint: "oklch(0.26 0.045 155)" },
+  { key: "O", label: "Observe", title: "Observe", color: "var(--observation)", tint: "oklch(0.26 0.045 220)" },
+  { key: "R", label: "Review", title: "Review", color: "var(--reflection)", tint: "oklch(0.26 0.045 300)" },
 ];
 
 function Lesson() {
@@ -115,7 +115,7 @@ function Lesson() {
         >
           <div className="mb-8 flex items-center gap-4">
             <span
-              className="flex h-11 w-11 items-center justify-center rounded-full text-lg font-bold text-white shadow-soft"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-lg font-bold text-[oklch(0.18_0.04_260)] shadow-soft"
               style={{ background: activeStage.color }}
             >
               {activeStage.key}
@@ -149,7 +149,7 @@ function Lesson() {
               ← Previous
             </button>
             <button
-              className="rounded-2xl px-6 py-2.5 text-sm font-bold text-white shadow-soft transition-transform hover:scale-[1.02] disabled:opacity-40"
+              className="rounded-2xl px-6 py-2.5 text-sm font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-transform hover:scale-[1.02] disabled:opacity-40"
               style={{ background: activeStage.color }}
               disabled={active === "R"}
               onClick={() => {
@@ -174,7 +174,7 @@ function SituationView() {
   return (
     <div className="space-y-8">
       <div
-        className="rounded-3xl border-l-[6px] bg-[oklch(0.98_0.02_80)] p-6"
+        className="rounded-3xl border-l-[6px] bg-[oklch(0.26_0.045_80)] p-6"
         style={{ borderColor: "var(--situation)" }}
       >
         <p className="text-xs font-bold uppercase tracking-widest text-[var(--situation)]">
@@ -209,10 +209,10 @@ function SituationView() {
         <div className="flex items-center justify-center">
           <div
             className="relative flex h-64 w-64 items-center justify-center rounded-[2rem] shadow-soft"
-            style={{ background: "oklch(0.95 0.04 220)" }}
+            style={{ background: "oklch(0.26 0.045 220)" }}
           >
             <svg viewBox="0 0 200 200" className="h-full w-full p-6">
-              <rect x="80" y="30" width="40" height="120" rx="6" fill="oklch(0.85 0.03 240)" />
+              <rect x="80" y="30" width="40" height="120" rx="6" fill="oklch(0.35 0.05 240)" />
               <rect x="70" y="20" width="60" height="14" rx="4" fill="oklch(0.55 0.16 235)" />
               <circle cx="100" cy="165" r="18" fill="oklch(0.4 0.05 250)" />
               <circle cx="100" cy="90" r="4" fill="white" />
@@ -262,7 +262,7 @@ function ProblemView({
         className="rounded-[2rem] border p-6 shadow-soft md:p-8"
         style={{
           background:
-            "linear-gradient(160deg, oklch(0.98 0.03 210) 0%, oklch(0.97 0.02 190) 60%, oklch(0.96 0.03 90) 100%)",
+            "linear-gradient(160deg, oklch(0.26 0.045 210) 0%, oklch(0.26 0.045 190) 60%, oklch(0.26 0.045 90) 100%)",
         }}
       >
         <div className="flex items-center gap-2">
@@ -283,7 +283,7 @@ function ProblemView({
             className="absolute -inset-2 rounded-[1.5rem] opacity-30 blur-2xl"
             style={{
               background:
-                "linear-gradient(120deg, oklch(0.8 0.08 200), oklch(0.78 0.07 170), oklch(0.82 0.06 80))",
+                "linear-gradient(120deg, oklch(0.35 0.05 200), oklch(0.35 0.05 170), oklch(0.35 0.05 80))",
             }}
           />
           <div className="relative overflow-hidden rounded-[1.5rem] border border-white/60 shadow-soft">
@@ -353,7 +353,7 @@ function ProblemView({
                 className="flex items-start gap-3 rounded-[1.5rem] border-2 p-5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft"
                 style={{
                   borderColor: isSel ? "var(--problem)" : "var(--border)",
-                  background: isSel ? "oklch(0.98 0.03 40)" : "var(--card)",
+                  background: isSel ? "oklch(0.26 0.045 40)" : "var(--card)",
                 }}
               >
                 <span
@@ -373,7 +373,7 @@ function ProblemView({
         {predicted && (
           <div
             className="mt-6 rounded-3xl border-l-[6px] p-5"
-            style={{ borderColor: "var(--problem)", background: "oklch(0.98 0.03 40)" }}
+            style={{ borderColor: "var(--problem)", background: "oklch(0.26 0.045 40)" }}
           >
             <p className="text-sm">
               Prediction recorded. Let's test it in the <span className="font-bold">Action</span> stage!
@@ -408,7 +408,7 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
           <div className="mt-4 flex gap-3">
             <button
               onClick={() => setPushes(Math.min(maxPushes, pushes + 1))}
-              className="rounded-2xl bg-[var(--action)] px-5 py-2.5 text-sm font-bold text-white shadow-soft transition-all hover:scale-[1.02] hover:opacity-90"
+              className="rounded-2xl bg-[var(--action)] px-5 py-2.5 text-sm font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-all hover:scale-[1.02] hover:opacity-90"
             >
               Push plunger
             </button>
@@ -424,7 +424,7 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
       </div>
 
       <div className="flex flex-col items-center justify-center">
-        <div className="relative flex h-72 w-32 flex-col rounded-[1.5rem] border-4 border-[oklch(0.8_0.03_220)] bg-white shadow-soft">
+        <div className="relative flex h-72 w-32 flex-col rounded-[1.5rem] border-4 border-[oklch(0.35_0.05_220)] bg-[oklch(0.22_0.04_250)] shadow-soft">
           <div
             className="w-full rounded-t-[1.25rem] bg-[oklch(0.65_0.1_220)] transition-all duration-500"
             style={{ height: `${compression}%`, minHeight: 12 }}
@@ -442,7 +442,7 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
               />
             ))}
           </div>
-          <div className="h-3 w-full bg-[oklch(0.8_0.03_220)]" />
+          <div className="h-3 w-full bg-[oklch(0.35_0.05_220)]" />
           <div className="mx-auto h-6 w-4 bg-[oklch(0.65_0.05_220)]" />
         </div>
         <p className="mt-3 text-xs font-semibold text-muted-foreground">
@@ -496,7 +496,7 @@ function ObservationView({ pushes }: { pushes: number }) {
           <ObsItem checked={pushes >= 3} text="When released, the plunger sprang back up." />
         </ul>
       </div>
-      <div className="rounded-[2rem] p-7" style={{ background: "oklch(0.96 0.03 220)" }}>
+      <div className="rounded-[2rem] p-7" style={{ background: "oklch(0.26 0.045 220)" }}>
         <p className="text-sm font-bold uppercase tracking-widest text-[var(--observation)]">
           Science Concept
         </p>
@@ -536,7 +536,7 @@ function ObsItem({ checked, text }: { checked: boolean; text: string }) {
   return (
     <li className="flex items-start gap-3 rounded-2xl bg-muted p-4">
       <span
-        className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
+        className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold text-[oklch(0.18_0.04_260)]"
         style={{ background: checked ? "var(--action)" : "var(--border)" }}
       >
         {checked ? "✓" : ""}
@@ -586,7 +586,7 @@ function ReflectionView({
                 className="rounded-[1.25rem] border-2 p-3.5 text-sm font-semibold transition-all duration-300 hover:shadow-soft"
                 style={{
                   borderColor: isOn ? "var(--reflection)" : "var(--border)",
-                  background: isOn ? "oklch(0.97 0.04 300)" : "var(--card)",
+                  background: isOn ? "oklch(0.26 0.045 300)" : "var(--card)",
                 }}
               >
                 {isOn ? "✓ " : ""}
@@ -600,7 +600,7 @@ function ReflectionView({
           <div
             className="mt-6 rounded-3xl p-5 text-sm"
             style={{
-              background: wasCorrect ? "oklch(0.96 0.05 150)" : "oklch(0.97 0.04 70)",
+              background: wasCorrect ? "oklch(0.26 0.045 150)" : "oklch(0.26 0.045 70)",
             }}
           >
             {wasCorrect ? (
@@ -629,7 +629,7 @@ function ReflectionView({
         <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
           <span>{reflection.length} characters</span>
           <button
-            className="rounded-xl bg-[var(--reflection)] px-5 py-2.5 text-xs font-bold text-white shadow-soft transition-all hover:scale-[1.02] disabled:opacity-40"
+            className="rounded-xl bg-[var(--reflection)] px-5 py-2.5 text-xs font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-all hover:scale-[1.02] disabled:opacity-40"
             disabled={!reflection.trim()}
             onClick={() => alert("Reflection saved (sample only).")}
           >

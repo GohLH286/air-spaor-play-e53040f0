@@ -38,39 +38,39 @@
 
 :root {
   --radius: 1.25rem;
-  --background: oklch(0.97 0.02 225);
-  --foreground: oklch(0.32 0.04 250);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.32 0.04 250);
-  --primary: oklch(0.65 0.1 205);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.94 0.03 160);
-  --secondary-foreground: oklch(0.3 0.05 250);
-  --muted: oklch(0.95 0.02 220);
-  --muted-foreground: oklch(0.48 0.03 250);
-  --accent: oklch(0.92 0.05 185);
-  --accent-foreground: oklch(0.32 0.04 250);
-  --border: oklch(0.9 0.02 230);
-  --ring: oklch(0.7 0.1 210);
+  --background: oklch(0.17 0.045 260);
+  --foreground: oklch(0.94 0.02 235);
+  --card: oklch(0.22 0.05 260);
+  --card-foreground: oklch(0.94 0.02 235);
+  --primary: oklch(0.72 0.15 225);
+  --primary-foreground: oklch(0.15 0.04 260);
+  --secondary: oklch(0.28 0.06 260);
+  --secondary-foreground: oklch(0.94 0.02 235);
+  --muted: oklch(0.26 0.05 260);
+  --muted-foreground: oklch(0.75 0.03 240);
+  --accent: oklch(0.68 0.16 200);
+  --accent-foreground: oklch(0.15 0.04 260);
+  --border: oklch(0.34 0.06 255);
+  --ring: oklch(0.72 0.16 220);
 
-  --situation: oklch(0.72 0.12 70);   /* warm sand */
-  --problem: oklch(0.65 0.13 35);      /* soft terracotta */
-  --action: oklch(0.62 0.12 155);      /* sage green */
-  --observation: oklch(0.65 0.11 220); /* sky blue */
-  --reflection: oklch(0.65 0.12 300);  /* soft lavender */
+  --situation: oklch(0.78 0.15 75);    /* amber */
+  --problem: oklch(0.72 0.17 30);      /* coral */
+  --action: oklch(0.76 0.16 160);      /* mint */
+  --observation: oklch(0.74 0.16 225); /* cyan */
+  --reflection: oklch(0.74 0.16 300);  /* violet */
 
-  --gradient-sky: linear-gradient(180deg, oklch(0.94 0.04 225) 0%, oklch(0.98 0.02 100) 100%);
-  --gradient-sunrise: linear-gradient(135deg, oklch(0.95 0.04 220) 0%, oklch(0.96 0.03 90) 100%);
-  --shadow-soft: 0 14px 40px -16px oklch(0.45 0.08 240 / 0.18);
-  --shadow-glow: 0 0 40px -12px oklch(0.75 0.12 210 / 0.35);
+  --gradient-sky: linear-gradient(180deg, oklch(0.2 0.06 260) 0%, oklch(0.16 0.04 245) 100%);
+  --gradient-sunrise: linear-gradient(135deg, oklch(0.22 0.07 255) 0%, oklch(0.18 0.05 220) 100%);
+  --shadow-soft: 0 16px 44px -18px oklch(0.05 0.05 260 / 0.75);
+  --shadow-glow: 0 0 40px -10px oklch(0.7 0.17 220 / 0.5);
 
   /* futuristic backdrop */
-  --grid-line: oklch(0.62 0.13 230 / 0.16);
+  --grid-line: oklch(0.75 0.15 220 / 0.14);
   --grid-size: 44px;
-  --gradient-future: radial-gradient(900px 520px at 12% -8%, oklch(0.86 0.13 200 / 0.55), transparent 60%),
-    radial-gradient(760px 520px at 92% 4%, oklch(0.82 0.14 300 / 0.45), transparent 62%),
-    radial-gradient(900px 620px at 50% 108%, oklch(0.88 0.12 170 / 0.42), transparent 65%),
-    linear-gradient(175deg, oklch(0.96 0.03 235) 0%, oklch(0.98 0.015 260) 55%, oklch(0.97 0.02 190) 100%);
+  --gradient-future: radial-gradient(900px 520px at 12% -8%, oklch(0.5 0.2 235 / 0.55), transparent 60%),
+    radial-gradient(760px 520px at 92% 4%, oklch(0.45 0.2 300 / 0.45), transparent 62%),
+    radial-gradient(900px 620px at 50% 108%, oklch(0.5 0.18 190 / 0.4), transparent 65%),
+    linear-gradient(175deg, oklch(0.16 0.05 262) 0%, oklch(0.13 0.04 255) 55%, oklch(0.15 0.05 230) 100%);
 }
 
 @layer base {
@@ -102,8 +102,8 @@
     z-index: 0;
     background: repeating-linear-gradient(
       to bottom,
-      oklch(0.55 0.1 240 / 0.045) 0px,
-      oklch(0.55 0.1 240 / 0.045) 1px,
+      oklch(0.85 0.14 220 / 0.05) 0px,
+      oklch(0.85 0.14 220 / 0.05) 1px,
       transparent 1px,
       transparent 4px
     );
