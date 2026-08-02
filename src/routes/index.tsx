@@ -431,19 +431,26 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
             style={{ height: `${compression}%`, minHeight: 12 }}
           />
           <div className="relative flex-1 overflow-hidden">
-            {Array.from({ length: 28 + pushes * 10 }).map((_, i) => (
-              <span
-                key={i}
-                className="particle-drift absolute h-2 w-2 rounded-full transition-all duration-500"
-                style={{
-                  background: `oklch(0.75 0.12 220 / ${0.5 + pushes * 0.12})`,
-                  left: `${(i * 37) % 90}%`,
-                  top: `${(i * 53) % 90}%`,
-                  animationDuration: `${1.4 + ((i * 7) % 12) / 10 - pushes * 0.25}s`,
-                  animationDelay: `${((i * 13) % 20) / 10}s`,
-                }}
-              />
-            ))}
+            {Array.from({ length: 70 }).map((_, i) => {
+              const rx = ((Math.sin(i * 12.9898) * 43758.5453) % 1 + 1) % 1;
+              const ry = ((Math.sin(i * 78.233) * 12345.6789) % 1 + 1) % 1;
+              const rz = ((Math.sin(i * 39.425) * 24634.6345) % 1 + 1) % 1;
+              return (
+                <span
+                  key={i}
+                  className="particle-drift absolute rounded-full transition-all duration-500"
+                  style={{
+                    height: 7 + Math.round(rz * 3),
+                    width: 7 + Math.round(rz * 3),
+                    background: `oklch(0.78 0.13 220 / ${0.45 + pushes * 0.15})`,
+                    left: `${4 + rx * 84}%`,
+                    top: `${3 + ry * 90}%`,
+                    animationDuration: `${1.1 + rz * 2.2}s`,
+                    animationDelay: `${-rx * 3}s`,
+                  }}
+                />
+              );
+            })}
           </div>
           <div className="h-3 w-full bg-[oklch(0.35_0.05_220)]" />
           <div className="mx-auto h-6 w-4 bg-[oklch(0.65_0.05_220)]" />
@@ -451,6 +458,13 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
         <p className="mt-3 text-xs font-semibold text-muted-foreground">
           Air particles inside the sealed syringe
         </p>
+        {pushes >= maxPushes && (
+          <p className="mt-2 max-w-[15rem] text-center text-xs font-semibold text-[var(--action)]">
+            The last portion cannot be compressed any further — the air particles are already
+            packed close together, and air occupies space.
+          </p>
+        )}
+
       </div>
     </div>
 
