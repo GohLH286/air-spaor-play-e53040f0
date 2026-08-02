@@ -4,6 +4,7 @@ import { SlideDeck } from "@/components/SlideDeck";
 import { UploadZone } from "@/components/UploadZone";
 import { KissBoard } from "@/components/KissBoard";
 import litReviewInfographic from "@/assets/lit-review-infographic.jpg.asset.json";
+import mrsTanPump from "@/assets/mrs-tan-pump.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -207,19 +208,19 @@ function SituationView() {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <div
-            className="relative flex h-64 w-64 items-center justify-center rounded-[2rem] shadow-soft"
-            style={{ background: "oklch(0.26 0.045 220)" }}
-          >
-            <svg viewBox="0 0 200 200" className="h-full w-full p-6">
-              <rect x="80" y="30" width="40" height="120" rx="6" fill="oklch(0.35 0.05 240)" />
-              <rect x="70" y="20" width="60" height="14" rx="4" fill="oklch(0.55 0.16 235)" />
-              <circle cx="100" cy="165" r="18" fill="oklch(0.4 0.05 250)" />
-              <circle cx="100" cy="90" r="4" fill="white" />
-              <circle cx="90" cy="110" r="3" fill="white" />
-              <circle cx="110" cy="70" r="3" fill="white" />
-            </svg>
-          </div>
+          <figure className="overflow-hidden rounded-[2rem] shadow-soft">
+            <img
+              src={mrsTanPump}
+              alt="Mrs Tan crouching beside a bicycle, pressing a hand pump to inflate the tyre in the school compound"
+              width={1024}
+              height={1024}
+              loading="lazy"
+              className="h-72 w-full object-cover md:h-80"
+            />
+            <figcaption className="bg-muted px-4 py-3 text-sm text-muted-foreground">
+              Mrs Tan pumping up her bicycle tyre before school.
+            </figcaption>
+          </figure>
         </div>
       </div>
 
