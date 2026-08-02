@@ -76,6 +76,7 @@
 
 @layer base {
   * { border-color: var(--color-border); }
+  html { font-size: 16px; }
   body {
     background: var(--gradient-future);
     background-attachment: fixed;
@@ -112,4 +113,9 @@
   }
   #root, body > * { position: relative; z-index: 1; }
   h1,h2,h3 { font-family: var(--font-display); letter-spacing: -0.02em; font-weight: 700; }
+
+  /* Ensure all body text is at least Arial 12pt (16px) for readability */
+  body .text-\[10px\], body .text-\[11px\], body .text-xs { font-size: 1rem !important; }
+  body .text-sm { font-size: 1.125rem; }
 }
+
