@@ -5,6 +5,8 @@ import { UploadZone } from "@/components/UploadZone";
 import { KissBoard } from "@/components/KissBoard";
 import litReviewInfographic from "@/assets/lit-review-infographic.jpg.asset.json";
 import mrsTanPump from "@/assets/mrs-tan-pump.jpg";
+import syringeThumbSeal from "@/assets/syringe-thumb-seal.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
