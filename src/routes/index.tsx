@@ -4,6 +4,7 @@ import { SlideDeck } from "@/components/SlideDeck";
 import { UploadZone } from "@/components/UploadZone";
 import { KissBoard } from "@/components/KissBoard";
 import litReviewInfographic from "@/assets/lit-review-infographic.jpg.asset.json";
+import mrsTanPump from "@/assets/mrs-tan-pump.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -207,19 +208,19 @@ function SituationView() {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <div
-            className="relative flex h-64 w-64 items-center justify-center rounded-[2rem] shadow-soft"
-            style={{ background: "oklch(0.26 0.045 220)" }}
-          >
-            <svg viewBox="0 0 200 200" className="h-full w-full p-6">
-              <rect x="80" y="30" width="40" height="120" rx="6" fill="oklch(0.35 0.05 240)" />
-              <rect x="70" y="20" width="60" height="14" rx="4" fill="oklch(0.55 0.16 235)" />
-              <circle cx="100" cy="165" r="18" fill="oklch(0.4 0.05 250)" />
-              <circle cx="100" cy="90" r="4" fill="white" />
-              <circle cx="90" cy="110" r="3" fill="white" />
-              <circle cx="110" cy="70" r="3" fill="white" />
-            </svg>
-          </div>
+          <figure className="overflow-hidden rounded-[2rem] shadow-soft">
+            <img
+              src={mrsTanPump}
+              alt="Mrs Tan crouching beside a bicycle, pressing a hand pump to inflate the tyre in the school compound"
+              width={1024}
+              height={1024}
+              loading="lazy"
+              className="h-72 w-full object-cover md:h-80"
+            />
+            <figcaption className="bg-muted px-4 py-3 text-sm text-muted-foreground">
+              Mrs Tan pumping up her bicycle tyre before school.
+            </figcaption>
+          </figure>
         </div>
       </div>
 
@@ -430,14 +431,16 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
             style={{ height: `${compression}%`, minHeight: 12 }}
           />
           <div className="relative flex-1 overflow-hidden">
-            {Array.from({ length: 8 + pushes * 4 }).map((_, i) => (
+            {Array.from({ length: 28 + pushes * 10 }).map((_, i) => (
               <span
                 key={i}
-                className="absolute h-2 w-2 rounded-full transition-all duration-500"
+                className="particle-drift absolute h-2 w-2 rounded-full transition-all duration-500"
                 style={{
-                  background: `oklch(0.65 0.1 220 / ${0.45 + pushes * 0.15})`,
+                  background: `oklch(0.75 0.12 220 / ${0.5 + pushes * 0.12})`,
                   left: `${(i * 37) % 90}%`,
                   top: `${(i * 53) % 90}%`,
+                  animationDuration: `${1.4 + ((i * 7) % 12) / 10 - pushes * 0.25}s`,
+                  animationDelay: `${((i * 13) % 20) / 10}s`,
                 }}
               />
             ))}
