@@ -32,9 +32,9 @@ const quadrants = [
     color: "var(--observation)",
     tint: "oklch(0.26 0.045 220)",
     suggestions: [
-      "Same PLT observation protocol",
-      "Learning-gap tracking sheet",
-      "Group sizes for hands-on work",
+      "Peer-teaching by HA pupils in mixed groups",
+      "Digital particle simulation before hands-on work",
+      "Exit ticket after every lesson segment",
     ],
   },
   {
