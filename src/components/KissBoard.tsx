@@ -26,9 +26,9 @@ const quadrants = [
     ],
   },
   {
-    id: "stay",
-    title: "Stay",
-    hint: "What to hold steady / keep watching",
+    id: "start",
+    title: "Start",
+    hint: "What to begin doing next cycle",
     color: "var(--observation)",
     tint: "oklch(0.26 0.045 220)",
     suggestions: [
@@ -61,7 +61,7 @@ export function KissBoard() {
   return (
     <div className="space-y-5">
       <div>
-        <p className="font-semibold">KISS review · Keep · Improve · Stay · Stop</p>
+        <p className="font-semibold">KISS review · Keep · Improve · Start · Stop</p>
         <p className="mt-1 text-sm text-muted-foreground">
           Choose the items for each quadrant, or add your own from the PLT discussion.
         </p>

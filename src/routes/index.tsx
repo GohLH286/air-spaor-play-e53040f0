@@ -431,14 +431,16 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
             style={{ height: `${compression}%`, minHeight: 12 }}
           />
           <div className="relative flex-1 overflow-hidden">
-            {Array.from({ length: 8 + pushes * 4 }).map((_, i) => (
+            {Array.from({ length: 28 + pushes * 10 }).map((_, i) => (
               <span
                 key={i}
-                className="absolute h-2 w-2 rounded-full transition-all duration-500"
+                className="particle-drift absolute h-2 w-2 rounded-full transition-all duration-500"
                 style={{
-                  background: `oklch(0.65 0.1 220 / ${0.45 + pushes * 0.15})`,
+                  background: `oklch(0.75 0.12 220 / ${0.5 + pushes * 0.12})`,
                   left: `${(i * 37) % 90}%`,
                   top: `${(i * 53) % 90}%`,
+                  animationDuration: `${1.4 + ((i * 7) % 12) / 10 - pushes * 0.25}s`,
+                  animationDelay: `${((i * 13) % 20) / 10}s`,
                 }}
               />
             ))}
