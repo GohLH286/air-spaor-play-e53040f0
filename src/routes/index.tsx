@@ -512,7 +512,22 @@ function ObservationView({ pushes }: { pushes: number }) {
           <ObsItem checked={observed} text="No air escaped — the nozzle was sealed." />
           <ObsItem checked={pushes >= 3} text="When released, the plunger sprang back up." />
         </ul>
+        <figure className="mt-6 overflow-hidden rounded-[1.5rem] border border-[oklch(0.4_0.06_240)] shadow-soft">
+          <img
+            src={syringeThumbSeal}
+            alt="Pupil pressing the syringe plunger with a thumb while the index finger of the other hand seals the nozzle"
+            loading="lazy"
+            width={1024}
+            height={768}
+            className="h-56 w-full object-cover"
+          />
+          <figcaption className="bg-[oklch(0.24_0.045_250)] px-4 py-3 text-xs text-muted-foreground">
+            Thumb presses the plunger while the index finger blocks the nozzle — the air is
+            sealed inside and cannot escape.
+          </figcaption>
+        </figure>
       </div>
+
       <div className="rounded-[2rem] p-7" style={{ background: "oklch(0.26 0.045 220)" }}>
         <p className="text-sm font-bold uppercase tracking-widest text-[var(--observation)]">
           Science Concept
