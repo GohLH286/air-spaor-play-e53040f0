@@ -231,61 +231,69 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         </button>
       )}
 
-      {spec.allowLink && (
-        <div className="mt-4 rounded-2xl bg-muted p-3.5">
-          <label className="text-xs font-semibold" htmlFor={`link-${spec.id}`}>
-            SLS link
-          </label>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {spec.linkHint ?? "Paste the SLS URL here."}
-          </p>
-          <div className="mt-2 flex gap-2">
-            <input
-              id={`link-${spec.id}`}
-              type="url"
-              value={linkDraft}
-              placeholder="https://vle.learning.moe.edu.sg/..."
-              onChange={(e) => setLinkDraft(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") void addLink();
-              }}
-              className="min-w-0 flex-1 rounded-xl border bg-background px-3 py-2 text-xs outline-none focus:border-[color:var(--ring)]"
-            />
-            <button
-              type="button"
-              onClick={() => void addLink()}
-              className="rounded-xl px-3.5 py-2 text-xs font-bold text-[oklch(0.18_0.04_260)]"
-              style={{ background: color }}
-            >
-              Save
-            </button>
+      {linkFields.map((field) => {
+        const fieldLinks = links.filter((l) =>
+          field.key === "default" ? !l.title || l.title === "default" : l.title === field.key,
+        );
+        const inputId = `link-${spec.id}-${field.key}`;
+        return (
+          <div key={field.key} className="mt-4 rounded-2xl bg-muted p-3.5">
+            <label className="text-xs font-semibold" htmlFor={inputId}>
+              {field.label}
+            </label>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {field.hint ?? "Paste the SLS URL here."}
+            </p>
+            <div className="mt-2 flex gap-2">
+              <input
+                id={inputId}
+                type="url"
+                value={linkDrafts[field.key] ?? ""}
+                placeholder={field.placeholder ?? "https://vle.learning.moe.edu.sg/..."}
+                onChange={(e) =>
+                  setLinkDrafts((d) => ({ ...d, [field.key]: e.target.value }))
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") void addLink(field.key);
+                }}
+                className="min-w-0 flex-1 rounded-xl border bg-background px-3 py-2 text-xs outline-none focus:border-[color:var(--ring)]"
+              />
+              <button
+                type="button"
+                onClick={() => void addLink(field.key)}
+                className="rounded-xl px-3.5 py-2 text-xs font-bold text-[oklch(0.18_0.04_260)]"
+                style={{ background: color }}
+              >
+                Save
+              </button>
+            </div>
+            {fieldLinks.length > 0 && (
+              <ul className="mt-3 space-y-2">
+                {fieldLinks.map((l) => (
+                  <li key={l.id} className="flex items-center justify-between gap-3">
+                    <a
+                      href={l.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="truncate text-xs font-medium underline underline-offset-2"
+                    >
+                      {l.url}
+                    </a>
+                    <button
+                      type="button"
+                      aria-label="Remove link"
+                      onClick={() => void removeLink(l.id)}
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      ✕
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          {links.length > 0 && (
-            <ul className="mt-3 space-y-2">
-              {links.map((l) => (
-                <li key={l.id} className="flex items-center justify-between gap-3">
-                  <a
-                    href={l.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="truncate text-xs font-medium underline underline-offset-2"
-                  >
-                    {l.url}
-                  </a>
-                  <button
-                    type="button"
-                    aria-label="Remove link"
-                    onClick={() => void removeLink(l.id)}
-                    className="text-xs text-muted-foreground hover:text-foreground"
-                  >
-                    ✕
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
+        );
+      })}
 
       {error && <p className="mt-3 text-[11px] text-[var(--problem)]">{error}</p>}
     </div>
