@@ -391,6 +391,8 @@ function ProblemView({
 
 function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: number) => void }) {
   const maxPushes = 3;
+  const pushLimit = 2;
+  const atLimit = pushes >= pushLimit;
   const compression = (pushes / maxPushes) * 100;
   return (
     <div className="space-y-8">
@@ -410,10 +412,11 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
           </p>
           <div className="mt-4 flex gap-3">
             <button
-              onClick={() => setPushes(Math.min(maxPushes, pushes + 1))}
-              className="rounded-2xl bg-[var(--action)] px-5 py-2.5 text-sm font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-all hover:scale-[1.02] hover:opacity-90"
+              onClick={() => setPushes(Math.min(pushLimit, pushes + 1))}
+              disabled={atLimit}
+              className="rounded-2xl bg-[var(--action)] px-5 py-2.5 text-sm font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-all hover:scale-[1.02] hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
             >
-              Push plunger
+              {atLimit ? "Cannot push further" : "Push plunger"}
             </button>
             <button
               onClick={() => setPushes(0)}
@@ -423,6 +426,11 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
             </button>
           </div>
           <p className="mt-4 text-xs text-muted-foreground">Pushes: {pushes} / {maxPushes}</p>
+          {atLimit && (
+            <p className="mt-1 text-xs font-semibold text-[var(--action)]">
+              The plunger stops here — the air inside cannot be compressed any further.
+            </p>
+          )}
         </div>
       </div>
 
@@ -460,7 +468,7 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
         <p className="mt-3 text-xs font-semibold text-muted-foreground">
           Air particles inside the sealed syringe
         </p>
-        {pushes >= maxPushes && (
+        {atLimit && (
           <p className="mt-2 max-w-[15rem] text-center text-xs font-semibold text-[var(--action)]">
             The last portion cannot be compressed any further — the air particles are already
             packed close together, and air occupies space.
@@ -512,7 +520,7 @@ function ObservationView({ pushes }: { pushes: number }) {
           <ObsItem checked={observed} text="The plunger moved down — the air took up less space." />
           <ObsItem checked={observed} text="It became harder to push as the plunger went down." />
           <ObsItem checked={observed} text="No air escaped — the nozzle was sealed." />
-          <ObsItem checked={pushes >= 3} text="When released, the plunger sprang back up." />
+          <ObsItem checked={pushes >= 2} text="When released, the plunger sprang back up." />
         </ul>
         <figure className="mt-6 overflow-hidden rounded-[1.5rem] border border-[oklch(0.4_0.06_240)] shadow-soft">
           <img
@@ -554,11 +562,15 @@ function ObservationView({ pushes }: { pushes: number }) {
             id: "sls-remedial",
             title: "SLS remedial lesson",
             hint: "Upload the SLS remedial lesson package or link screenshot.",
+            allowLink: true,
+            linkHint: "Paste the SLS remedial lesson link.",
           },
           {
             id: "salis-bot",
             title: "SALIS chatbot — 1-to-1 pupil interaction",
             hint: "Upload chatbot prompts, transcripts or setup notes from SLS.",
+            allowLink: true,
+            linkHint: "Paste the SALIS chatbot link in SLS.",
           },
         ]}
       />

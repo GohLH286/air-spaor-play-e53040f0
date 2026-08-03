@@ -6,6 +6,13 @@ export type UploadSlotSpec = {
   title: string;
   hint?: string;
   accept?: string;
+  allowLink?: boolean;
+  linkHint?: string;
+};
+
+type StoredLink = {
+  id: string;
+  url: string;
 };
 
 type StoredFile = {
@@ -29,6 +36,8 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
   const [dragging, setDragging] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [links, setLinks] = useState<StoredLink[]>([]);
+  const [linkDraft, setLinkDraft] = useState("");
 
   const load = useCallback(async () => {
     const { data, error: err } = await supabase
@@ -50,9 +59,38 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
     );
   }, [spec.id]);
 
+  const loadLinks = useCallback(async () => {
+    if (!spec.allowLink) return;
+    const { data } = await supabase
+      .from("plt_links")
+      .select("id, url")
+      .eq("slot_id", spec.id)
+      .order("created_at", { ascending: true });
+    setLinks((data ?? []).map((r) => ({ id: r.id, url: r.url })));
+  }, [spec.id, spec.allowLink]);
+
   useEffect(() => {
     void load();
-  }, [load]);
+    void loadLinks();
+  }, [load, loadLinks]);
+
+  const addLink = async () => {
+    const raw = linkDraft.trim();
+    if (!raw) return;
+    const url = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+    const { error: err } = await supabase.from("plt_links").insert({ slot_id: spec.id, url });
+    if (err) {
+      setError(err.message);
+      return;
+    }
+    setLinkDraft("");
+    await loadLinks();
+  };
+
+  const removeLink = async (id: string) => {
+    await supabase.from("plt_links").delete().eq("id", id);
+    await loadLinks();
+  };
 
   const add = async (list: FileList | null) => {
     if (!list || list.length === 0) return;
@@ -173,6 +211,62 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         >
           {busy ? "Uploading…" : "Drag & drop or click + to upload"}
         </button>
+      )}
+
+      {spec.allowLink && (
+        <div className="mt-4 rounded-2xl bg-muted p-3.5">
+          <label className="text-xs font-semibold" htmlFor={`link-${spec.id}`}>
+            SLS link
+          </label>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {spec.linkHint ?? "Paste the SLS URL here."}
+          </p>
+          <div className="mt-2 flex gap-2">
+            <input
+              id={`link-${spec.id}`}
+              type="url"
+              value={linkDraft}
+              placeholder="https://vle.learning.moe.edu.sg/..."
+              onChange={(e) => setLinkDraft(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") void addLink();
+              }}
+              className="min-w-0 flex-1 rounded-xl border bg-background px-3 py-2 text-xs outline-none focus:border-[color:var(--ring)]"
+            />
+            <button
+              type="button"
+              onClick={() => void addLink()}
+              className="rounded-xl px-3.5 py-2 text-xs font-bold text-[oklch(0.18_0.04_260)]"
+              style={{ background: color }}
+            >
+              Save
+            </button>
+          </div>
+          {links.length > 0 && (
+            <ul className="mt-3 space-y-2">
+              {links.map((l) => (
+                <li key={l.id} className="flex items-center justify-between gap-3">
+                  <a
+                    href={l.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="truncate text-xs font-medium underline underline-offset-2"
+                  >
+                    {l.url}
+                  </a>
+                  <button
+                    type="button"
+                    aria-label="Remove link"
+                    onClick={() => void removeLink(l.id)}
+                    className="text-xs text-muted-foreground hover:text-foreground"
+                  >
+                    ✕
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
 
       {error && <p className="mt-3 text-[11px] text-[var(--problem)]">{error}</p>}

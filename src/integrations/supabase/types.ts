@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      plt_links: {
+        Row: {
+          created_at: string
+          id: string
+          slot_id: string
+          title: string | null
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          slot_id: string
+          title?: string | null
+          url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          slot_id?: string
+          title?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
       plt_uploads: {
         Row: {
           created_at: string
