@@ -487,6 +487,10 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
             title: "Experiment video — sponge balls as air particles",
             hint: "Upload the recording of the sponge-ball demonstration.",
             accept: "video/*",
+            linkFields: [
+              { key: "acp-v1", label: "SLS link — ACP v1", hint: "Paste the SLS URL for ACP v1." },
+              { key: "acp-v2", label: "SLS link — ACP v2", hint: "Paste the SLS URL for ACP v2." },
+            ],
           },
           {
             id: "worksheets",
