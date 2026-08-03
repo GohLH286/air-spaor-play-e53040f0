@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
+export type LinkField = {
+  key: string;
+  label: string;
+  hint?: string;
+  placeholder?: string;
+};
+
 export type UploadSlotSpec = {
   id: string;
   title: string;
@@ -8,11 +15,13 @@ export type UploadSlotSpec = {
   accept?: string;
   allowLink?: boolean;
   linkHint?: string;
+  linkFields?: LinkField[];
 };
 
 type StoredLink = {
   id: string;
   url: string;
+  title: string | null;
 };
 
 type StoredFile = {
