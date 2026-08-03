@@ -46,7 +46,14 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [links, setLinks] = useState<StoredLink[]>([]);
-  const [linkDraft, setLinkDraft] = useState("");
+  const [linkDrafts, setLinkDrafts] = useState<Record<string, string>>({});
+
+  const linkFields: LinkField[] =
+    spec.linkFields ??
+    (spec.allowLink
+      ? [{ key: "default", label: "SLS link", hint: spec.linkHint }]
+      : []);
+  const hasLinks = linkFields.length > 0;
 
   const load = useCallback(async () => {
     const { data, error: err } = await supabase
@@ -69,30 +76,32 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
   }, [spec.id]);
 
   const loadLinks = useCallback(async () => {
-    if (!spec.allowLink) return;
+    if (!hasLinks) return;
     const { data } = await supabase
       .from("plt_links")
-      .select("id, url")
+      .select("id, url, title")
       .eq("slot_id", spec.id)
       .order("created_at", { ascending: true });
-    setLinks((data ?? []).map((r) => ({ id: r.id, url: r.url })));
-  }, [spec.id, spec.allowLink]);
+    setLinks((data ?? []).map((r) => ({ id: r.id, url: r.url, title: r.title })));
+  }, [spec.id, hasLinks]);
 
   useEffect(() => {
     void load();
     void loadLinks();
   }, [load, loadLinks]);
 
-  const addLink = async () => {
-    const raw = linkDraft.trim();
+  const addLink = async (fieldKey: string) => {
+    const raw = (linkDrafts[fieldKey] ?? "").trim();
     if (!raw) return;
     const url = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
-    const { error: err } = await supabase.from("plt_links").insert({ slot_id: spec.id, url });
+    const { error: err } = await supabase
+      .from("plt_links")
+      .insert({ slot_id: spec.id, url, title: fieldKey });
     if (err) {
       setError(err.message);
       return;
     }
-    setLinkDraft("");
+    setLinkDrafts((d) => ({ ...d, [fieldKey]: "" }));
     await loadLinks();
   };
 
