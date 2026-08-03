@@ -509,6 +509,21 @@ function ActionView({ pushes, setPushes }: { pushes: number; setPushes: (n: numb
           },
         ]}
       />
+
+      <UploadZone
+        label="Action · SC Lab Activity"
+        color="var(--action)"
+        columns={1}
+        slots={[
+          {
+            id: "sc-lab-photos",
+            title: "SC Lab Activity — pupils' photos",
+            hint: "Upload photos of pupils carrying out the syringe / sponge-ball experiment in the science lab.",
+            accept: "image/*",
+          },
+        ]}
+      />
+
     </div>
   );
 }
