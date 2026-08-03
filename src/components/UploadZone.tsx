@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
+export type LinkField = {
+  key: string;
+  label: string;
+  hint?: string;
+  placeholder?: string;
+};
+
 export type UploadSlotSpec = {
   id: string;
   title: string;
@@ -8,11 +15,13 @@ export type UploadSlotSpec = {
   accept?: string;
   allowLink?: boolean;
   linkHint?: string;
+  linkFields?: LinkField[];
 };
 
 type StoredLink = {
   id: string;
   url: string;
+  title: string | null;
 };
 
 type StoredFile = {
@@ -37,7 +46,14 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [links, setLinks] = useState<StoredLink[]>([]);
-  const [linkDraft, setLinkDraft] = useState("");
+  const [linkDrafts, setLinkDrafts] = useState<Record<string, string>>({});
+
+  const linkFields: LinkField[] =
+    spec.linkFields ??
+    (spec.allowLink
+      ? [{ key: "default", label: "SLS link", hint: spec.linkHint }]
+      : []);
+  const hasLinks = linkFields.length > 0;
 
   const load = useCallback(async () => {
     const { data, error: err } = await supabase
@@ -60,30 +76,32 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
   }, [spec.id]);
 
   const loadLinks = useCallback(async () => {
-    if (!spec.allowLink) return;
+    if (!hasLinks) return;
     const { data } = await supabase
       .from("plt_links")
-      .select("id, url")
+      .select("id, url, title")
       .eq("slot_id", spec.id)
       .order("created_at", { ascending: true });
-    setLinks((data ?? []).map((r) => ({ id: r.id, url: r.url })));
-  }, [spec.id, spec.allowLink]);
+    setLinks((data ?? []).map((r) => ({ id: r.id, url: r.url, title: r.title })));
+  }, [spec.id, hasLinks]);
 
   useEffect(() => {
     void load();
     void loadLinks();
   }, [load, loadLinks]);
 
-  const addLink = async () => {
-    const raw = linkDraft.trim();
+  const addLink = async (fieldKey: string) => {
+    const raw = (linkDrafts[fieldKey] ?? "").trim();
     if (!raw) return;
     const url = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
-    const { error: err } = await supabase.from("plt_links").insert({ slot_id: spec.id, url });
+    const { error: err } = await supabase
+      .from("plt_links")
+      .insert({ slot_id: spec.id, url, title: fieldKey });
     if (err) {
       setError(err.message);
       return;
     }
-    setLinkDraft("");
+    setLinkDrafts((d) => ({ ...d, [fieldKey]: "" }));
     await loadLinks();
   };
 
@@ -213,61 +231,69 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         </button>
       )}
 
-      {spec.allowLink && (
-        <div className="mt-4 rounded-2xl bg-muted p-3.5">
-          <label className="text-xs font-semibold" htmlFor={`link-${spec.id}`}>
-            SLS link
-          </label>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {spec.linkHint ?? "Paste the SLS URL here."}
-          </p>
-          <div className="mt-2 flex gap-2">
-            <input
-              id={`link-${spec.id}`}
-              type="url"
-              value={linkDraft}
-              placeholder="https://vle.learning.moe.edu.sg/..."
-              onChange={(e) => setLinkDraft(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") void addLink();
-              }}
-              className="min-w-0 flex-1 rounded-xl border bg-background px-3 py-2 text-xs outline-none focus:border-[color:var(--ring)]"
-            />
-            <button
-              type="button"
-              onClick={() => void addLink()}
-              className="rounded-xl px-3.5 py-2 text-xs font-bold text-[oklch(0.18_0.04_260)]"
-              style={{ background: color }}
-            >
-              Save
-            </button>
+      {linkFields.map((field) => {
+        const fieldLinks = links.filter((l) =>
+          field.key === "default" ? !l.title || l.title === "default" : l.title === field.key,
+        );
+        const inputId = `link-${spec.id}-${field.key}`;
+        return (
+          <div key={field.key} className="mt-4 rounded-2xl bg-muted p-3.5">
+            <label className="text-xs font-semibold" htmlFor={inputId}>
+              {field.label}
+            </label>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {field.hint ?? "Paste the SLS URL here."}
+            </p>
+            <div className="mt-2 flex gap-2">
+              <input
+                id={inputId}
+                type="url"
+                value={linkDrafts[field.key] ?? ""}
+                placeholder={field.placeholder ?? "https://vle.learning.moe.edu.sg/..."}
+                onChange={(e) =>
+                  setLinkDrafts((d) => ({ ...d, [field.key]: e.target.value }))
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") void addLink(field.key);
+                }}
+                className="min-w-0 flex-1 rounded-xl border bg-background px-3 py-2 text-xs outline-none focus:border-[color:var(--ring)]"
+              />
+              <button
+                type="button"
+                onClick={() => void addLink(field.key)}
+                className="rounded-xl px-3.5 py-2 text-xs font-bold text-[oklch(0.18_0.04_260)]"
+                style={{ background: color }}
+              >
+                Save
+              </button>
+            </div>
+            {fieldLinks.length > 0 && (
+              <ul className="mt-3 space-y-2">
+                {fieldLinks.map((l) => (
+                  <li key={l.id} className="flex items-center justify-between gap-3">
+                    <a
+                      href={l.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="truncate text-xs font-medium underline underline-offset-2"
+                    >
+                      {l.url}
+                    </a>
+                    <button
+                      type="button"
+                      aria-label="Remove link"
+                      onClick={() => void removeLink(l.id)}
+                      className="text-xs text-muted-foreground hover:text-foreground"
+                    >
+                      ✕
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-          {links.length > 0 && (
-            <ul className="mt-3 space-y-2">
-              {links.map((l) => (
-                <li key={l.id} className="flex items-center justify-between gap-3">
-                  <a
-                    href={l.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="truncate text-xs font-medium underline underline-offset-2"
-                  >
-                    {l.url}
-                  </a>
-                  <button
-                    type="button"
-                    aria-label="Remove link"
-                    onClick={() => void removeLink(l.id)}
-                    className="text-xs text-muted-foreground hover:text-foreground"
-                  >
-                    ✕
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
+        );
+      })}
 
       {error && <p className="mt-3 text-[11px] text-[var(--problem)]">{error}</p>}
     </div>
