@@ -1,37 +1,13 @@
 import { useState } from "react";
 
-import s01 from "@/assets/lc-slides/slide-01.jpg.asset.json";
-import s02 from "@/assets/lc-slides/slide-02.jpg.asset.json";
-import s03 from "@/assets/lc-slides/slide-03.jpg.asset.json";
-import s04 from "@/assets/lc-slides/slide-04.jpg.asset.json";
-import s05 from "@/assets/lc-slides/slide-05.jpg.asset.json";
-import s06 from "@/assets/lc-slides/slide-06.jpg.asset.json";
-import s07 from "@/assets/lc-slides/slide-07.jpg.asset.json";
-import s08 from "@/assets/lc-slides/slide-08.jpg.asset.json";
-import s09 from "@/assets/lc-slides/slide-09.jpg.asset.json";
-import s10 from "@/assets/lc-slides/slide-10.jpg.asset.json";
-import s11 from "@/assets/lc-slides/slide-11.jpg.asset.json";
-import s12 from "@/assets/lc-slides/slide-12.jpg.asset.json";
-import s13 from "@/assets/lc-slides/slide-13.jpg.asset.json";
-import s14 from "@/assets/lc-slides/slide-14.jpg.asset.json";
-import s15 from "@/assets/lc-slides/slide-15.jpg.asset.json";
-import s16 from "@/assets/lc-slides/slide-16.jpg.asset.json";
-import s17 from "@/assets/lc-slides/slide-17.jpg.asset.json";
-import s18 from "@/assets/lc-slides/slide-18.jpg.asset.json";
-import s19 from "@/assets/lc-slides/slide-19.jpg.asset.json";
-import s20 from "@/assets/lc-slides/slide-20.jpg.asset.json";
-import s21 from "@/assets/lc-slides/slide-21.jpg.asset.json";
-import s22 from "@/assets/lc-slides/slide-22.jpg.asset.json";
-import s23 from "@/assets/lc-slides/slide-23.jpg.asset.json";
-import s24 from "@/assets/lc-slides/slide-24.jpg.asset.json";
-import s25 from "@/assets/lc-slides/slide-25.jpg.asset.json";
-import deck from "@/assets/learning-circles-deck.pptx.asset.json";
 
-const slides = [
-  s01, s02, s03, s04, s05, s06, s07, s08, s09, s10,
-  s11, s12, s13, s14, s15, s16, s17, s18, s19, s20,
-  s21, s22, s23, s24, s25,
-].map((a) => a.url);
+
+
+
+const slides = Array.from(
+  { length: 25 },
+  (_, i) => `/lc-slides/slide-${String(i + 1).padStart(2, "0")}.jpg`
+);
 
 export function SlideDeck() {
   const [i, setI] = useState(0);
@@ -47,13 +23,13 @@ export function SlideDeck() {
           <p className="text-sm font-semibold">Introduction to Learning Circle (OPAL 2.0)</p>
         </div>
         <a
-          href={deck.url}
+          href="/2026 Learning Circles PPT slides 5 Jan Goh (5) V1 3 May (6).pptx"
           download
           className="rounded-xl border px-3.5 py-2 text-xs font-semibold transition-colors hover:bg-muted"
-        >
-          Download .pptx
-        </a>
-      </div>
+       const slides = Array.from(
+  { length: 25 },
+  (_, i) => `/lc-slides/slide-${String(i + 1).padStart(2, "0")}.jpg`
+);
 
       <div className="relative overflow-hidden rounded-[1.5rem] border bg-muted/50">
         <img
