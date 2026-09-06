@@ -51,7 +51,8 @@ export function SlideDeck() {
        >
         Download .pptx
         </a>
-
+        </div>
+      
         <div className="relative overflow-hidden rounded-[1.5rem] border bg-muted/50">
         <img
           src={slides[i]}
