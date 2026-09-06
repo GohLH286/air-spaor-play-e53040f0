@@ -4,11 +4,33 @@ import { useState } from "react";
 
 
 
-const slides = Array.from(
-  { length: 25 },
-  (_, i) => `/lc-slides/slide-${String(i + 1).padStart(2, "0")}.jpg`
-);
-
+const slides = [
+  "/lc-slides/slide-01.jpg",
+  "/lc-slides/slide-02.jpg",
+  "/lc-slides/slide-03.jpg",
+  "/lc-slides/slide-04.jpg",
+  "/lc-slides/slide-05.jpg",
+  "/lc-slides/slide-06.jpg",
+  "/lc-slides/slide-07.jpg",
+  "/lc-slides/slide-08.jpg",
+  "/lc-slides/slide-09.jpg",
+  "/lc-slides/slide-10.jpg",
+  "/lc-slides/slide-11.jpg",
+  "/lc-slides/slide-12.jpg",
+  "/lc-slides/slide-13.jpg",
+  "/lc-slides/slide-14.jpg",
+  "/lc-slides/slide-15.jpg",
+  "/lc-slides/slide-16.jpg",
+  "/lc-slides/slide-17.jpg",
+  "/lc-slides/slide-18.jpg",
+  "/lc-slides/slide-19.jpg",
+  "/lc-slides/slide-20.jpg",
+  "/lc-slides/slide-21.jpg",
+  "/lc-slides/slide-22.jpg",
+  "/lc-slides/slide-23.jpg",
+  "/lc-slides/slide-24.jpg",
+  "/lc-slides/slide-25.jpg",
+];
 export function SlideDeck() {
   const [i, setI] = useState(0);
   const total = slides.length;
