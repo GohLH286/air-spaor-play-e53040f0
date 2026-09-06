@@ -48,9 +48,11 @@ export function SlideDeck() {
           href="/2026 Learning Circles PPT slides 5 Jan Goh (5) V1 3 May (6).pptx"
           download
           className="rounded-xl border px-3.5 py-2 text-xs font-semibold transition-colors hover:bg-muted"
-       
+       >
+        Download .pptx
+        </a>
 
-      <div className="relative overflow-hidden rounded-[1.5rem] border bg-muted/50">
+        <div className="relative overflow-hidden rounded-[1.5rem] border bg-muted/50">
         <img
           src={slides[i]}
           alt={`Learning Circle slide ${i + 1} of ${total}`}
