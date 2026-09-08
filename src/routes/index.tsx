@@ -88,7 +88,9 @@ function Lesson() {
               ))}
             </div>
           </div>
+          </div>
         </header>
+
 
         <nav className="mb-8 grid grid-cols-5 gap-3 rounded-[2rem] bg-card p-3 shadow-[var(--shadow-soft)]">
           {stages.map((s) => {
