@@ -68,6 +68,14 @@ function Lesson() {
               A calm, guided SPAOR investigation for PLT · MOE Science Syllabus
             </p>
           </div>
+          <div className="flex flex-wrap items-center gap-3">
+          <a
+            href="/magnets"
+            className="rounded-full border px-5 py-2.5 text-xs font-semibold shadow-soft transition hover:opacity-80"
+            style={{ borderColor: "var(--border)", background: "var(--card)" }}
+          >
+            P3 Magnets Revision Notes →
+          </a>
           <div className="flex items-center gap-3 rounded-full border bg-card px-5 py-2.5 shadow-soft">
             <span className="text-xs font-semibold text-muted-foreground">Lesson Progress</span>
             <div className="flex gap-1.5">
@@ -80,7 +88,9 @@ function Lesson() {
               ))}
             </div>
           </div>
+          </div>
         </header>
+
 
         <nav className="mb-8 grid grid-cols-5 gap-3 rounded-[2rem] bg-card p-3 shadow-[var(--shadow-soft)]">
           {stages.map((s) => {
