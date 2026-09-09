@@ -3,7 +3,7 @@ import { useState } from "react";
 import { SlideDeck } from "@/components/SlideDeck";
 import { UploadZone } from "@/components/UploadZone";
 import { KissBoard } from "@/components/KissBoard";
-import litReviewInfographic from "@/assets/lit-review-infographic.jpg.asset.json";
+
 import mrsTanPump from "@/assets/mrs-tan-pump.jpg";
 import syringeThumbSeal from "@/assets/syringe-thumb-seal.jpg";
 
@@ -69,13 +69,6 @@ function Lesson() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-          <a
-            href="/magnets"
-            className="rounded-full border px-5 py-2.5 text-xs font-semibold shadow-soft transition hover:opacity-80"
-            style={{ borderColor: "var(--border)", background: "var(--card)" }}
-          >
-            P3 Magnets Revision Notes →
-          </a>
           <div className="flex items-center gap-3 rounded-full border bg-card px-5 py-2.5 shadow-soft">
             <span className="text-xs font-semibold text-muted-foreground">Lesson Progress</span>
             <div className="flex gap-1.5">
@@ -301,7 +294,7 @@ function ProblemView({
           />
           <div className="relative overflow-hidden rounded-[1.5rem] border border-white/60 shadow-soft">
             <img
-              src={litReviewInfographic.url}
+              src="/literature-review-infographic.png"
               alt="Literature review infographic: effective strategies for teaching air as a gas — inquiry-based learning (SingTeach NIE 2023), hands-on syringe experiments (TERC 2019), MOE primary science syllabus air concepts, and active learning with visuals (ASCD 2022)"
               className="block w-full"
               loading="lazy"
