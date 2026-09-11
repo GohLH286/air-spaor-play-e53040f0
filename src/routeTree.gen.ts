@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MagnetsRouteImport } from './routes/magnets'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PracticeIndexRouteImport } from './routes/practice.index'
+import { Route as PracticeLowRouteImport } from './routes/practice.low'
 
 const MagnetsRoute = MagnetsRouteImport.update({
   id: '/magnets',
@@ -22,31 +24,49 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PracticeIndexRoute = PracticeIndexRouteImport.update({
+  id: '/practice/',
+  path: '/practice/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeLowRoute = PracticeLowRouteImport.update({
+  id: '/practice/low',
+  path: '/practice/low',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/practice/low': typeof PracticeLowRoute
+  '/practice/': typeof PracticeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/practice/low': typeof PracticeLowRoute
+  '/practice': typeof PracticeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/practice/low': typeof PracticeLowRoute
+  '/practice/': typeof PracticeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/magnets'
+  fullPaths: '/' | '/magnets' | '/practice/low' | '/practice/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/magnets'
-  id: '__root__' | '/' | '/magnets'
+  to: '/' | '/magnets' | '/practice/low' | '/practice'
+  id: '__root__' | '/' | '/magnets' | '/practice/low' | '/practice/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MagnetsRoute: typeof MagnetsRoute
+  PracticeLowRoute: typeof PracticeLowRoute
+  PracticeIndexRoute: typeof PracticeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/practice/': {
+      id: '/practice/'
+      path: '/practice'
+      fullPath: '/practice/'
+      preLoaderRoute: typeof PracticeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice/low': {
+      id: '/practice/low'
+      path: '/practice/low'
+      fullPath: '/practice/low'
+      preLoaderRoute: typeof PracticeLowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MagnetsRoute: MagnetsRoute,
+  PracticeLowRoute: PracticeLowRoute,
+  PracticeIndexRoute: PracticeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
