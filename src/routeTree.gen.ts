@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as MagnetsRouteImport } from './routes/magnets'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
+import { Route as PracticeMediumRouteImport } from './routes/practice.medium'
 import { Route as PracticeLowRouteImport } from './routes/practice.low'
+import { Route as PracticeHighRouteImport } from './routes/practice.high'
 
 const MagnetsRoute = MagnetsRouteImport.update({
   id: '/magnets',
@@ -29,43 +31,80 @@ const PracticeIndexRoute = PracticeIndexRouteImport.update({
   path: '/practice/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PracticeMediumRoute = PracticeMediumRouteImport.update({
+  id: '/practice/medium',
+  path: '/practice/medium',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PracticeLowRoute = PracticeLowRouteImport.update({
   id: '/practice/low',
   path: '/practice/low',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeHighRoute = PracticeHighRouteImport.update({
+  id: '/practice/high',
+  path: '/practice/high',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/practice/high': typeof PracticeHighRoute
   '/practice/low': typeof PracticeLowRoute
+  '/practice/medium': typeof PracticeMediumRoute
   '/practice/': typeof PracticeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/practice/high': typeof PracticeHighRoute
   '/practice/low': typeof PracticeLowRoute
+  '/practice/medium': typeof PracticeMediumRoute
   '/practice': typeof PracticeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/practice/high': typeof PracticeHighRoute
   '/practice/low': typeof PracticeLowRoute
+  '/practice/medium': typeof PracticeMediumRoute
   '/practice/': typeof PracticeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/magnets' | '/practice/low' | '/practice/'
+  fullPaths:
+    | '/'
+    | '/magnets'
+    | '/practice/high'
+    | '/practice/low'
+    | '/practice/medium'
+    | '/practice/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/magnets' | '/practice/low' | '/practice'
-  id: '__root__' | '/' | '/magnets' | '/practice/low' | '/practice/'
+  to:
+    | '/'
+    | '/magnets'
+    | '/practice/high'
+    | '/practice/low'
+    | '/practice/medium'
+    | '/practice'
+  id:
+    | '__root__'
+    | '/'
+    | '/magnets'
+    | '/practice/high'
+    | '/practice/low'
+    | '/practice/medium'
+    | '/practice/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MagnetsRoute: typeof MagnetsRoute
+  PracticeHighRoute: typeof PracticeHighRoute
   PracticeLowRoute: typeof PracticeLowRoute
+  PracticeMediumRoute: typeof PracticeMediumRoute
   PracticeIndexRoute: typeof PracticeIndexRoute
 }
 
@@ -92,11 +131,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/practice/medium': {
+      id: '/practice/medium'
+      path: '/practice/medium'
+      fullPath: '/practice/medium'
+      preLoaderRoute: typeof PracticeMediumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/practice/low': {
       id: '/practice/low'
       path: '/practice/low'
       fullPath: '/practice/low'
       preLoaderRoute: typeof PracticeLowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice/high': {
+      id: '/practice/high'
+      path: '/practice/high'
+      fullPath: '/practice/high'
+      preLoaderRoute: typeof PracticeHighRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -105,7 +158,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MagnetsRoute: MagnetsRoute,
+  PracticeHighRoute: PracticeHighRoute,
   PracticeLowRoute: PracticeLowRoute,
+  PracticeMediumRoute: PracticeMediumRoute,
   PracticeIndexRoute: PracticeIndexRoute,
 }
 export const routeTree = rootRouteImport
