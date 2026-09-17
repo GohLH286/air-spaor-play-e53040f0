@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SlideDeck } from "@/components/SlideDeck";
 import { UploadZone } from "@/components/UploadZone";
 import { KissBoard } from "@/components/KissBoard";
@@ -32,6 +32,21 @@ export const Route = createFileRoute("/")({
 
 type StageKey = "S" | "P" | "A" | "O" | "R";
 
+const stageParams: Record<StageKey, string> = {
+  S: "scan",
+  P: "plan",
+  A: "action",
+  O: "observe",
+  R: "review",
+};
+
+function getStageFromUrl(): StageKey | null {
+  if (typeof window === "undefined") return null;
+  const requestedStage = new URLSearchParams(window.location.search).get("stage")?.toLowerCase();
+  const match = Object.entries(stageParams).find(([, value]) => value === requestedStage);
+  return match ? (match[0] as StageKey) : null;
+}
+
 const stages: {
   key: StageKey;
   label: string;
@@ -53,7 +68,20 @@ function Lesson() {
   const [reflection, setReflection] = useState("");
   const [checked, setChecked] = useState<Record<string, boolean>>({});
 
-  const activeStage = stages.find((s) => s.key === active)!;
+  const activeStage = stages.find((s) => s.key === active) ?? stages[0];
+
+  useEffect(() => {
+    const requestedStage = getStageFromUrl();
+    if (requestedStage) setActive(requestedStage);
+  }, []);
+
+  const selectStage = (stage: StageKey) => {
+    setActive(stage);
+    const url = new URL(window.location.href);
+    url.searchParams.set("stage", stageParams[stage]);
+    window.history.replaceState({}, "", url);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <main className="min-h-screen px-5 py-8 md:px-12 md:py-14">
@@ -91,7 +119,7 @@ function Lesson() {
             return (
               <button
                 key={s.key}
-                onClick={() => setActive(s.key)}
+                onClick={() => selectStage(s.key)}
                 className="group flex flex-col items-center gap-2 rounded-[1.5rem] px-2 py-4 text-center transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   background: isActive ? s.color : "transparent",
@@ -149,7 +177,7 @@ function Lesson() {
               disabled={active === "S"}
               onClick={() => {
                 const idx = stages.findIndex((s) => s.key === active);
-                setActive(stages[Math.max(0, idx - 1)].key);
+                selectStage(stages[Math.max(0, idx - 1)].key);
               }}
             >
               ← Previous
@@ -160,7 +188,7 @@ function Lesson() {
               disabled={active === "R"}
               onClick={() => {
                 const idx = stages.findIndex((s) => s.key === active);
-                setActive(stages[Math.min(4, idx + 1)].key);
+                selectStage(stages[Math.min(4, idx + 1)].key);
               }}
             >
               Next →
