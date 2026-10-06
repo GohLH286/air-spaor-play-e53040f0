@@ -11,7 +11,7 @@ import syringeThumbSeal from "@/assets/syringe-thumb-seal.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Air Can Be Compressed — P4 Science SPAOR Lesson" },
+      { title: "CPA: From Mathematics to Science — P4 Science SPAOR Lesson" },
       {
         name: "description",
         content:
@@ -89,9 +89,9 @@ function Lesson() {
         <header className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-              Primary 4 Science · Diversity of Matter · Air
+              Primary 4 Science · Matter · Air
             </p>
-            <h1 className="mt-2 text-3xl font-bold md:text-4xl">Air Can Be Compressed</h1>
+            <h1 className="mt-2 text-3xl font-bold md:text-4xl">CPA: From Mathematics to Science</h1>
             <p className="mt-1.5 text-sm text-muted-foreground">
               A calm, guided SPAOR investigation for PLT · MOE Science Syllabus
             </p>
