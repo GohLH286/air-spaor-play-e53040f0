@@ -9,21 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MagnetsRouteImport } from './routes/magnets'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MagnetsRouteImport } from './routes/magnets'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
-import { Route as PracticeMediumRouteImport } from './routes/practice.medium'
-import { Route as PracticeLowRouteImport } from './routes/practice.low'
 import { Route as PracticeHighRouteImport } from './routes/practice.high'
+import { Route as PracticeLowRouteImport } from './routes/practice.low'
+import { Route as PracticeMediumRouteImport } from './routes/practice.medium'
 
-const MagnetsRoute = MagnetsRouteImport.update({
-  id: '/magnets',
-  path: '/magnets',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MagnetsRoute = MagnetsRouteImport.update({
+  id: '/magnets',
+  path: '/magnets',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PracticeIndexRoute = PracticeIndexRouteImport.update({
@@ -31,9 +31,9 @@ const PracticeIndexRoute = PracticeIndexRouteImport.update({
   path: '/practice/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PracticeMediumRoute = PracticeMediumRouteImport.update({
-  id: '/practice/medium',
-  path: '/practice/medium',
+const PracticeHighRoute = PracticeHighRouteImport.update({
+  id: '/practice/high',
+  path: '/practice/high',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PracticeLowRoute = PracticeLowRouteImport.update({
@@ -41,9 +41,9 @@ const PracticeLowRoute = PracticeLowRouteImport.update({
   path: '/practice/low',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PracticeHighRoute = PracticeHighRouteImport.update({
-  id: '/practice/high',
-  path: '/practice/high',
+const PracticeMediumRoute = PracticeMediumRouteImport.update({
+  id: '/practice/medium',
+  path: '/practice/medium',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -110,18 +110,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/magnets': {
-      id: '/magnets'
-      path: '/magnets'
-      fullPath: '/magnets'
-      preLoaderRoute: typeof MagnetsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/magnets': {
+      id: '/magnets'
+      path: '/magnets'
+      fullPath: '/magnets'
+      preLoaderRoute: typeof MagnetsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/practice/': {
@@ -131,11 +131,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/practice/medium': {
-      id: '/practice/medium'
-      path: '/practice/medium'
-      fullPath: '/practice/medium'
-      preLoaderRoute: typeof PracticeMediumRouteImport
+    '/practice/high': {
+      id: '/practice/high'
+      path: '/practice/high'
+      fullPath: '/practice/high'
+      preLoaderRoute: typeof PracticeHighRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/practice/low': {
@@ -145,11 +145,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeLowRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/practice/high': {
-      id: '/practice/high'
-      path: '/practice/high'
-      fullPath: '/practice/high'
-      preLoaderRoute: typeof PracticeHighRouteImport
+    '/practice/medium': {
+      id: '/practice/medium'
+      path: '/practice/medium'
+      fullPath: '/practice/medium'
+      preLoaderRoute: typeof PracticeMediumRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
