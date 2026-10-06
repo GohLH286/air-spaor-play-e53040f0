@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
         content:
           "Interactive Primary 4 science lesson on air compression using the SPAOR method (Scan, Plan, Action, Observe, Review).",
       },
-      { property: "og:title", content: "Air Can Be Compressed — P4 Science SPAOR Lesson" },
+      { property: "og:title", content: "CPA: From Mathematics to Science — P4 Science SPAOR Lesson" },
       {
         property: "og:description",
         content:
