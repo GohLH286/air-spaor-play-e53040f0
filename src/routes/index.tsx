@@ -12,13 +12,13 @@ import planInfographic from "@/assets/teaching-air-compression-three-ways.png.as
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CPA: From Mathematics to Science — P4 Science SPAOR Lesson" },
+      { title: "Making the Invisible Visible: Using CPA Beyond Mathematics to Deepen Understanding of Air Compression" },
       {
         name: "description",
         content:
           "Interactive Primary 4 science lesson on air compression using the SPAOR method (Scan, Plan, Action, Observe, Review).",
       },
-      { property: "og:title", content: "CPA: From Mathematics to Science — P4 Science SPAOR Lesson" },
+      { property: "og:title", content: "Making the Invisible Visible: Using CPA Beyond Mathematics to Deepen Understanding of Air Compression" },
       {
         property: "og:description",
         content:
@@ -92,7 +92,12 @@ function Lesson() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Primary 4 Science · Matter · Air
             </p>
-            <h1 className="mt-2 text-3xl font-bold md:text-4xl">CPA: From Mathematics to Science</h1>
+            <h1 className="mt-2 text-2xl font-bold leading-tight md:text-4xl">
+              Making the Invisible Visible
+              <span className="mt-1.5 block text-base font-semibold text-muted-foreground md:text-xl">
+                Using CPA Beyond Mathematics to Deepen Understanding of Air Compression
+              </span>
+            </h1>
             <p className="mt-1.5 text-sm text-muted-foreground">
               A calm, guided SPAOR investigation for PLT · MOE Science Syllabus
             </p>
