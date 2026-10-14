@@ -225,9 +225,16 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
-          className="mt-4 rounded-2xl bg-muted px-4 py-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-background"
+          className="mt-4 flex items-center justify-center gap-2 rounded-2xl border-2 border-dashed px-4 py-4 text-sm font-semibold transition-colors hover:bg-background"
+          style={{ borderColor: color }}
         >
-          {busy ? "Uploading…" : "Drag & drop or click + to upload"}
+          <span
+            className="flex h-7 w-7 items-center justify-center rounded-full text-base font-bold text-[oklch(0.18_0.04_260)]"
+            style={{ background: color }}
+          >
+            +
+          </span>
+          {busy ? "Uploading…" : "Click here to add a file, or drag & drop it in"}
         </button>
       )}
 
