@@ -164,7 +164,13 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold leading-snug">{spec.title}</p>
+          <p
+            className="font-bold leading-snug"
+            style={{ fontSize: "1.3rem", color, textShadow: `0 0 18px color-mix(in oklab, ${color} 55%, transparent)` }}
+          >
+            {spec.title}
+          </p>
+
           {spec.hint && (
             <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{spec.hint}</p>
           )}
