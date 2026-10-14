@@ -132,11 +132,12 @@ function Lesson() {
                 className="rounded-full border-2 px-4 py-1.5 font-extrabold uppercase tracking-[0.1em]"
                 style={{
                   fontSize: "1.15rem",
-                  color: `color-mix(in oklab, ${chip.color} 62%, white)`,
-                  borderColor: `color-mix(in oklab, ${chip.color} 75%, white)`,
-                  background: `color-mix(in oklab, ${chip.color} 30%, transparent)`,
-                  textShadow: `0 0 20px color-mix(in oklab, ${chip.color} 80%, transparent)`,
+                  color: `oklch(from ${chip.color} 0.92 c h)`,
+                  borderColor: `oklch(from ${chip.color} 0.84 c h)`,
+                  background: `color-mix(in oklab, ${chip.color} 34%, transparent)`,
+                  textShadow: `0 0 22px color-mix(in oklab, ${chip.color} 85%, transparent)`,
                 }}
+
 
               >
                 {chip.label}
