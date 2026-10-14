@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SlideDeck } from "@/components/SlideDeck";
-import { UploadZone } from "@/components/UploadZone";
+import { UploadSlot, UploadZone } from "@/components/UploadZone";
+import { AbstractText } from "@/components/AbstractText";
 import { KissBoard } from "@/components/KissBoard";
 
 import mrsTanPump from "@/assets/mrs-tan-pump.jpg";
@@ -117,6 +118,40 @@ function Lesson() {
           </div>
           </div>
         </header>
+
+        <section className="mt-6 rounded-[2rem] border bg-card/60 p-6 shadow-[var(--shadow-soft)] md:p-8">
+          <div className="flex items-center gap-3">
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: stages[0].color }} />
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+              Lesson Overview · Abstract · Infographic · 3D Animation
+            </p>
+          </div>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <AbstractText color={stages[0].color} />
+            <UploadSlot
+              color={stages[1].color}
+              spec={{
+                id: "header-infographic",
+                title: "Infographic",
+                hint: "Upload the lesson infographic (image or PDF).",
+                accept: "image/*,application/pdf",
+              }}
+            />
+            <UploadSlot
+              color={stages[2].color}
+              spec={{
+                id: "header-3d-animation",
+                title: "3D Animation Video",
+                hint: "Upload the 3D animation clip (MP4, MOV, etc.).",
+                accept: "video/*",
+                allowLink: true,
+                linkHint: "Or paste a link to the 3D animation (SLS / YouTube).",
+              }}
+            />
+          </div>
+        </section>
+
+
 
 
         <nav className="mb-8 grid grid-cols-5 gap-3 rounded-[2rem] bg-card p-3 shadow-[var(--shadow-soft)]">

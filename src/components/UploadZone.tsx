@@ -332,3 +332,7 @@ export function UploadZone({
     </section>
   );
 }
+
+export function UploadSlot(props: { spec: UploadSlotSpec; color: string }) {
+  return <Slot spec={props.spec} color={props.color} />;
+}
