@@ -326,12 +326,21 @@ export function UploadZone({
 }) {
   return (
     <section className="rounded-[2rem] border bg-card/60 p-6 shadow-[var(--shadow-soft)] md:p-8">
-      <div className="flex items-center gap-3">
-        <span className="h-2.5 w-2.5 rounded-full" style={{ background: color }} />
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-3">
+        <span
+          className="rounded-full border px-4 py-1.5 font-bold uppercase tracking-[0.12em]"
+          style={{
+            fontSize: "1.1rem",
+            color,
+            borderColor: color,
+            background: `color-mix(in oklab, ${color} 20%, transparent)`,
+            textShadow: `0 0 18px color-mix(in oklab, ${color} 65%, transparent)`,
+          }}
+        >
           {label}
-        </p>
+        </span>
       </div>
+
       <div
         className={`mt-5 grid gap-4 ${columns === 2 ? "md:grid-cols-2" : "md:grid-cols-1"}`}
       >

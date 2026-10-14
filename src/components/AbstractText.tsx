@@ -43,7 +43,13 @@ export function AbstractText({ color }: { color: string }) {
   return (
     <div className="flex flex-col rounded-[1.5rem] border-2 border-dashed bg-card p-5">
       <div>
-        <p className="text-sm font-semibold leading-snug">Abstract</p>
+        <p
+          className="font-bold leading-snug"
+          style={{ fontSize: "1.3rem", color, textShadow: `0 0 18px color-mix(in oklab, ${color} 55%, transparent)` }}
+        >
+          Abstract
+        </p>
+
         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
           Write the lesson abstract here, then save — it stays after you refresh.
         </p>
