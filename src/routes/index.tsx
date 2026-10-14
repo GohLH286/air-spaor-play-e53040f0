@@ -129,14 +129,15 @@ function Lesson() {
             ].map((chip) => (
               <span
                 key={chip.label}
-                className="rounded-full border px-4 py-1.5 font-bold uppercase tracking-[0.12em]"
+                className="rounded-full border-2 px-4 py-1.5 font-extrabold uppercase tracking-[0.1em]"
                 style={{
-                  fontSize: "1.1rem",
-                  color: chip.color,
-                  borderColor: chip.color,
-                  background: `color-mix(in oklab, ${chip.color} 20%, transparent)`,
-                  textShadow: `0 0 18px color-mix(in oklab, ${chip.color} 65%, transparent)`,
+                  fontSize: "1.15rem",
+                  color: `color-mix(in oklab, ${chip.color} 62%, white)`,
+                  borderColor: `color-mix(in oklab, ${chip.color} 75%, white)`,
+                  background: `color-mix(in oklab, ${chip.color} 30%, transparent)`,
+                  textShadow: `0 0 20px color-mix(in oklab, ${chip.color} 80%, transparent)`,
                 }}
+
               >
                 {chip.label}
               </span>
