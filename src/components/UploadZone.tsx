@@ -330,12 +330,14 @@ export function UploadZone({
         <span
           className="rounded-full border-2 px-4 py-1.5 font-extrabold uppercase tracking-[0.1em]"
           style={{
-            fontSize: "1.15rem",
-            color: `oklch(from ${color} 0.92 c h)`,
-            borderColor: `oklch(from ${color} 0.84 c h)`,
-            background: `color-mix(in oklab, ${color} 34%, transparent)`,
-            textShadow: `0 0 22px color-mix(in oklab, ${color} 85%, transparent)`,
+            fontSize: "1.2rem",
+            color: `oklch(from ${color} 0.96 c h)`,
+            borderColor: `oklch(from ${color} 0.85 c h)`,
+            background: `color-mix(in oklab, ${color} 14%, transparent)`,
+            boxShadow: `0 0 26px -6px color-mix(in oklab, ${color} 60%, transparent)`,
+            textShadow: `0 0 22px color-mix(in oklab, ${color} 90%, transparent)`,
           }}
+
 
 
         >
