@@ -164,7 +164,13 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold leading-snug">{spec.title}</p>
+          <p
+            className="font-bold leading-snug"
+            style={{ fontSize: "1.3rem", color, textShadow: `0 0 18px color-mix(in oklab, ${color} 55%, transparent)` }}
+          >
+            {spec.title}
+          </p>
+
           {spec.hint && (
             <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{spec.hint}</p>
           )}
@@ -320,12 +326,25 @@ export function UploadZone({
 }) {
   return (
     <section className="rounded-[2rem] border bg-card/60 p-6 shadow-[var(--shadow-soft)] md:p-8">
-      <div className="flex items-center gap-3">
-        <span className="h-2.5 w-2.5 rounded-full" style={{ background: color }} />
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-3">
+        <span
+          className="rounded-full border-2 px-4 py-1.5 font-extrabold uppercase tracking-[0.1em]"
+          style={{
+            fontSize: "1.2rem",
+            color: `oklch(from ${color} 0.96 c h)`,
+            borderColor: `oklch(from ${color} 0.85 c h)`,
+            background: `color-mix(in oklab, ${color} 14%, transparent)`,
+            boxShadow: `0 0 26px -6px color-mix(in oklab, ${color} 60%, transparent)`,
+            textShadow: `0 0 22px color-mix(in oklab, ${color} 90%, transparent)`,
+          }}
+
+
+
+        >
           {label}
-        </p>
+        </span>
       </div>
+
       <div
         className={`mt-5 grid gap-4 ${columns === 2 ? "md:grid-cols-2" : "md:grid-cols-1"}`}
       >

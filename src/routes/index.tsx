@@ -120,12 +120,31 @@ function Lesson() {
         </header>
 
         <section className="mt-6 rounded-[2rem] border bg-card/60 p-6 shadow-[var(--shadow-soft)] md:p-8">
-          <div className="flex items-center gap-3">
-            <span className="h-2.5 w-2.5 rounded-full" style={{ background: stages[0].color }} />
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-              Lesson Overview · Abstract · Infographic · 3D Animation
-            </p>
+          <div className="flex flex-wrap items-center gap-2.5">
+            {[
+              { label: "Lesson Overview", color: "var(--observation)" },
+              { label: "Abstract", color: "var(--situation)" },
+              { label: "Infographic", color: "var(--problem)" },
+              { label: "3D Animation", color: "var(--action)" },
+            ].map((chip) => (
+              <span
+                key={chip.label}
+                className="rounded-full border-2 px-4 py-1.5 font-extrabold uppercase tracking-[0.1em]"
+                style={{
+                  fontSize: "1.2rem",
+                  color: `oklch(from ${chip.color} 0.96 c h)`,
+                  borderColor: `oklch(from ${chip.color} 0.85 c h)`,
+                  background: `color-mix(in oklab, ${chip.color} 14%, transparent)`,
+                  boxShadow: `0 0 26px -6px color-mix(in oklab, ${chip.color} 60%, transparent)`,
+                  textShadow: `0 0 22px color-mix(in oklab, ${chip.color} 90%, transparent)`,
+                }}
+              >
+
+                {chip.label}
+              </span>
+            ))}
           </div>
+
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             <AbstractText color={stages[0].color} />
             <UploadSlot
