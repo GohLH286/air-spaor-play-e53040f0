@@ -174,10 +174,10 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
           aria-label={`Upload ${spec.title}`}
           disabled={busy}
           onClick={() => inputRef.current?.click()}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-transform hover:scale-105 disabled:opacity-60"
+          className="flex h-11 shrink-0 items-center gap-1.5 rounded-full px-4 text-sm font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-transform hover:scale-105 disabled:opacity-60"
           style={{ background: color }}
         >
-          +
+          <span className="text-lg leading-none">+</span> Add
         </button>
       </div>
 
