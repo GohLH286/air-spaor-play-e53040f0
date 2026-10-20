@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MagnetsRouteImport } from './routes/magnets'
+import { Route as MathsRouteImport } from './routes/maths'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
 import { Route as PracticeHighRouteImport } from './routes/practice.high'
 import { Route as PracticeLowRouteImport } from './routes/practice.low'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const MagnetsRoute = MagnetsRouteImport.update({
   id: '/magnets',
   path: '/magnets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MathsRoute = MathsRouteImport.update({
+  id: '/maths',
+  path: '/maths',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PracticeIndexRoute = PracticeIndexRouteImport.update({
@@ -50,6 +56,7 @@ const PracticeMediumRoute = PracticeMediumRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/maths': typeof MathsRoute
   '/practice/high': typeof PracticeHighRoute
   '/practice/low': typeof PracticeLowRoute
   '/practice/medium': typeof PracticeMediumRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/maths': typeof MathsRoute
   '/practice/high': typeof PracticeHighRoute
   '/practice/low': typeof PracticeLowRoute
   '/practice/medium': typeof PracticeMediumRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/magnets': typeof MagnetsRoute
+  '/maths': typeof MathsRoute
   '/practice/high': typeof PracticeHighRoute
   '/practice/low': typeof PracticeLowRoute
   '/practice/medium': typeof PracticeMediumRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/magnets'
+    | '/maths'
     | '/practice/high'
     | '/practice/low'
     | '/practice/medium'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/magnets'
+    | '/maths'
     | '/practice/high'
     | '/practice/low'
     | '/practice/medium'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/magnets'
+    | '/maths'
     | '/practice/high'
     | '/practice/low'
     | '/practice/medium'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MagnetsRoute: typeof MagnetsRoute
+  MathsRoute: typeof MathsRoute
   PracticeHighRoute: typeof PracticeHighRoute
   PracticeLowRoute: typeof PracticeLowRoute
   PracticeMediumRoute: typeof PracticeMediumRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/magnets'
       fullPath: '/magnets'
       preLoaderRoute: typeof MagnetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maths': {
+      id: '/maths'
+      path: '/maths'
+      fullPath: '/maths'
+      preLoaderRoute: typeof MathsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/practice/': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MagnetsRoute: MagnetsRoute,
+  MathsRoute: MathsRoute,
   PracticeHighRoute: PracticeHighRoute,
   PracticeLowRoute: PracticeLowRoute,
   PracticeMediumRoute: PracticeMediumRoute,
