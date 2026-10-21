@@ -102,9 +102,6 @@ function Lesson() {
             <p className="mt-1.5 text-sm text-muted-foreground">
               A calm, guided SPAOR investigation for PLT · MOE Science Syllabus
             </p>
-            <Link to="/maths" className="mt-2 inline-block rounded-full border-2 border-[color:var(--action)] px-4 py-1 text-sm font-bold text-[color:var(--action)] hover:scale-105">
-              Open P3 Maths PLT Portal →
-            </Link>
           </div>
           <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-3 rounded-full border bg-card px-5 py-2.5 shadow-soft">
