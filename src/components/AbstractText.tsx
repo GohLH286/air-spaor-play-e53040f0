@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { getOwnerHash } from "@/lib/owner-key";
 
 const SLOT_ID = "header-abstract";
 
@@ -27,12 +28,11 @@ export function AbstractText({ color }: { color: string }) {
   const save = async () => {
     setBusy(true);
     setStatus(null);
-    await supabase.from("plt_links").delete().eq("slot_id", SLOT_ID);
     const trimmed = text.trim();
     if (trimmed) {
       const { error } = await supabase
         .from("plt_links")
-        .insert({ slot_id: SLOT_ID, url: trimmed, title: "abstract" });
+        .insert({ slot_id: SLOT_ID, url: trimmed, title: "abstract", owner_hash: await getOwnerHash() });
       setStatus(error ? error.message : "Abstract saved.");
     } else {
       setStatus("Abstract cleared.");
