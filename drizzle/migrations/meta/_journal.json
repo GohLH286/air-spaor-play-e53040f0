@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792564829855,
+      "tag": "0000_owner_key_deletes",
+      "breakpoints": true
+    }
+  ]
+}
