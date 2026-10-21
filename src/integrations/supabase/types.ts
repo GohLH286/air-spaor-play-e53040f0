@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          owner_hash: string | null
           slot_id: string
           title: string | null
           url: string
@@ -25,6 +26,7 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
+          owner_hash?: string | null
           slot_id: string
           title?: string | null
           url: string
@@ -32,6 +34,7 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          owner_hash?: string | null
           slot_id?: string
           title?: string | null
           url?: string
@@ -44,6 +47,7 @@ export type Database = {
           file_name: string
           file_size: number
           id: string
+          owner_hash: string | null
           slot_id: string
           storage_path: string
         }
@@ -52,6 +56,7 @@ export type Database = {
           file_name: string
           file_size?: number
           id?: string
+          owner_hash?: string | null
           slot_id: string
           storage_path: string
         }
@@ -60,6 +65,7 @@ export type Database = {
           file_name?: string
           file_size?: number
           id?: string
+          owner_hash?: string | null
           slot_id?: string
           storage_path?: string
         }
@@ -70,7 +76,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      delete_plt_item: {
+        Args: { _id: string; _key: string; _table: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

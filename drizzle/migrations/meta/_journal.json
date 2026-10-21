@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792564829855,
+      "tag": "0000_owner_key_deletes",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792564876313,
+      "tag": "0001_block_public_storage_delete",
+      "breakpoints": true
+    }
+  ]
+}

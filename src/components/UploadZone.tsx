@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { deleteOwned, getOwnerHash } from "@/lib/owner-key";
 
 export type LinkField = {
   key: string;
@@ -96,7 +97,7 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
     const url = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
     const { error: err } = await supabase
       .from("plt_links")
-      .insert({ slot_id: spec.id, url, title: fieldKey });
+      .insert({ slot_id: spec.id, url, title: fieldKey, owner_hash: await getOwnerHash() });
     if (err) {
       setError(err.message);
       return;
@@ -106,7 +107,7 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
   };
 
   const removeLink = async (id: string) => {
-    await supabase.from("plt_links").delete().eq("id", id);
+    if (!(await deleteOwned("links", id))) setError("Only the person who added this link can remove it.");
     await loadLinks();
   };
 
@@ -126,6 +127,7 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         file_name: file.name,
         file_size: file.size,
         storage_path: path,
+        owner_hash: await getOwnerHash(),
       });
       if (insErr) setError(insErr.message);
     }
@@ -134,8 +136,10 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
   };
 
   const remove = async (f: StoredFile) => {
-    await supabase.storage.from(BUCKET).remove([f.path]);
-    await supabase.from("plt_uploads").delete().eq("id", f.id);
+    if (!(await deleteOwned("uploads", f.id))) {
+      setError("Only the person who added this file can remove it.");
+      return;
+    }
     await load();
   };
 
