@@ -140,7 +140,6 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
       setError("Only the person who added this file can remove it.");
       return;
     }
-    await supabase.storage.from(BUCKET).remove([f.path]);
     await load();
   };
 

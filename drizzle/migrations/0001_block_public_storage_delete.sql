@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Anyone can delete plt files" ON storage.objects;
