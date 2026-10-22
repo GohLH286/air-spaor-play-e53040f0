@@ -102,6 +102,13 @@ function Lesson() {
             <p className="mt-1.5 text-sm text-muted-foreground">
               A calm, guided SPAOR investigation for PLT · MOE Science Syllabus
             </p>
+            <p className="mt-3 max-w-3xl rounded-2xl border-2 border-[color:var(--primary)] bg-card px-4 py-3 text-sm leading-relaxed">
+              <span className="font-extrabold uppercase tracking-[0.08em] text-[color:var(--primary)]">
+                Research Question:{" "}
+              </span>
+              To what extent does the experiment of pumping air into a basketball or fixed container
+              help pupils understand that air can be compressed rather than added in volume?
+            </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-3 rounded-full border bg-card px-5 py-2.5 shadow-soft">
