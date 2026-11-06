@@ -1,0 +1,7 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d --build",
+  "notes": "Dev server runs under Bun: Node's fetch is rate limited (429) by the quote feed. No external credentials required.",
+  "secrets": []
+}

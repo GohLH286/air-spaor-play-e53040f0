@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SlideDeck } from "@/components/SlideDeck";
 import { UploadSlot, UploadZone } from "@/components/UploadZone";
@@ -123,6 +123,12 @@ function Lesson() {
               ))}
             </div>
           </div>
+            <Link
+              to="/markets"
+              className="inline-flex items-center gap-2 rounded-full border bg-card px-5 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-foreground shadow-soft transition-colors hover:border-[color:var(--primary)] hover:text-[color:var(--primary)]"
+            >
+              Markets desk →
+            </Link>
           </div>
         </header>
 
