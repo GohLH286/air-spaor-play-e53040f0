@@ -22,6 +22,7 @@ export type Database = {
           slot_id: string
           title: string | null
           url: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -30,6 +31,7 @@ export type Database = {
           slot_id: string
           title?: string | null
           url: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -38,6 +40,7 @@ export type Database = {
           slot_id?: string
           title?: string | null
           url?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -50,6 +53,7 @@ export type Database = {
           owner_hash: string | null
           slot_id: string
           storage_path: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -59,6 +63,7 @@ export type Database = {
           owner_hash?: string | null
           slot_id: string
           storage_path: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -68,6 +73,7 @@ export type Database = {
           owner_hash?: string | null
           slot_id?: string
           storage_path?: string
+          user_id?: string | null
         }
         Relationships: []
       }

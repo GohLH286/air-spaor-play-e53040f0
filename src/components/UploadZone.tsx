@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { deleteOwned, getOwnerHash } from "@/lib/owner-key";
+import { TeacherSignIn, useTeacherSession } from "@/hooks/use-teacher-session";
 
 export type LinkField = {
   key: string;
@@ -55,8 +56,10 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
       ? [{ key: "default", label: "SLS link", hint: spec.linkHint }]
       : []);
   const hasLinks = linkFields.length > 0;
+  const { user, ready } = useTeacherSession();
 
   const load = useCallback(async () => {
+    if (!user) return setFiles([]);
     const { data, error: err } = await supabase
       .from("plt_uploads")
       .select("id, file_name, file_size, storage_path")
@@ -74,17 +77,17 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         path: r.storage_path,
       })),
     );
-  }, [spec.id]);
+  }, [spec.id, user]);
 
   const loadLinks = useCallback(async () => {
-    if (!hasLinks) return;
+    if (!hasLinks || !user) return setLinks([]);
     const { data } = await supabase
       .from("plt_links")
       .select("id, url, title")
       .eq("slot_id", spec.id)
       .order("created_at", { ascending: true });
     setLinks((data ?? []).map((r) => ({ id: r.id, url: r.url, title: r.title })));
-  }, [spec.id, hasLinks]);
+  }, [spec.id, hasLinks, user]);
 
   useEffect(() => {
     void load();
@@ -93,11 +96,11 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
 
   const addLink = async (fieldKey: string) => {
     const raw = (linkDrafts[fieldKey] ?? "").trim();
-    if (!raw) return;
+    if (!raw || !user) return;
     const url = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
     const { error: err } = await supabase
       .from("plt_links")
-      .insert({ slot_id: spec.id, url, title: fieldKey, owner_hash: await getOwnerHash() });
+      .insert({ slot_id: spec.id, url, title: fieldKey, user_id: user.id, owner_hash: await getOwnerHash() });
     if (err) {
       setError(err.message);
       return;
@@ -112,11 +115,11 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
   };
 
   const add = async (list: FileList | null) => {
-    if (!list || list.length === 0) return;
+    if (!list || list.length === 0 || !user) return;
     setBusy(true);
     setError(null);
     for (const file of Array.from(list)) {
-      const path = `${spec.id}/${crypto.randomUUID()}-${file.name.replace(/[^\w.\-]/g, "_")}`;
+      const path = `${user.id}/${spec.id}/${crypto.randomUUID()}-${file.name.replace(/[^\w.\-]/g, "_")}`;
       const { error: upErr } = await supabase.storage.from(BUCKET).upload(path, file);
       if (upErr) {
         setError(upErr.message);
@@ -127,6 +130,7 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         file_name: file.name,
         file_size: file.size,
         storage_path: path,
+        user_id: user.id,
         owner_hash: await getOwnerHash(),
       });
       if (insErr) setError(insErr.message);
@@ -182,7 +186,7 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         <button
           type="button"
           aria-label={`Upload ${spec.title}`}
-          disabled={busy}
+          disabled={busy || !user}
           onClick={() => inputRef.current?.click()}
           className="flex h-11 shrink-0 items-center gap-1.5 rounded-full px-4 text-sm font-bold text-[oklch(0.18_0.04_260)] shadow-soft transition-transform hover:scale-105 disabled:opacity-60"
           style={{ background: color }}
@@ -191,6 +195,7 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
         </button>
       </div>
 
+      {ready && !user ? <TeacherSignIn color={color} /> : <>
       <input
         ref={inputRef}
         type="file"
@@ -311,6 +316,7 @@ function Slot({ spec, color }: { spec: UploadSlotSpec; color: string }) {
           </div>
         );
       })}
+      </>}
 
       {error && <p className="mt-3 text-[11px] text-[var(--problem)]">{error}</p>}
     </div>

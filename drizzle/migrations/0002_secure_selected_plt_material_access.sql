@@ -1,0 +1,15 @@
+ALTER TABLE public.plt_uploads ADD COLUMN IF NOT EXISTS user_id uuid;
+ALTER TABLE public.plt_links ADD COLUMN IF NOT EXISTS user_id uuid;
+GRANT SELECT, INSERT ON public.plt_uploads, public.plt_links TO authenticated;
+GRANT ALL ON public.plt_uploads, public.plt_links TO service_role;
+REVOKE SELECT, INSERT ON public.plt_uploads, public.plt_links FROM anon;
+DROP POLICY "Anyone can add plt uploads" ON public.plt_uploads;
+DROP POLICY "Anyone can read plt uploads" ON public.plt_uploads;
+DROP POLICY "Anyone can add links" ON public.plt_links;
+DROP POLICY "Anyone can view links" ON public.plt_links;
+CREATE POLICY "Signed-in teachers read materials" ON public.plt_uploads FOR SELECT TO authenticated USING ((SELECT auth.uid()) IS NOT NULL);
+CREATE POLICY "Teachers add their own materials" ON public.plt_uploads FOR INSERT TO authenticated WITH CHECK (user_id = (SELECT auth.uid()) AND (storage.foldername(storage_path))[1] = (SELECT auth.uid()::text));
+CREATE POLICY "Signed-in teachers read links" ON public.plt_links FOR SELECT TO authenticated USING ((SELECT auth.uid()) IS NOT NULL);
+CREATE POLICY "Teachers add their own links" ON public.plt_links FOR INSERT TO authenticated WITH CHECK (user_id = (SELECT auth.uid()));
+DROP POLICY "Anyone can upload plt files" ON storage.objects;
+CREATE POLICY "Teachers upload to their own folder" ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id = 'plt-uploads' AND owner_id = (SELECT auth.uid()::text) AND (storage.foldername(name))[1] = (SELECT auth.uid()::text));

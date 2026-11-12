@@ -1,0 +1,4 @@
+- [x] Restrict selected PLT table access and bind new storage uploads to signed-in owners without deleting existing materials.
+- [x] Add teacher sign-in for saved materials, without profiles.
+- [x] Verify selected access rules and mark only the three requested findings fixed.
+- [ ] Signed-in upload verification waits for the first teacher account; no auth users exist to mint a test session.

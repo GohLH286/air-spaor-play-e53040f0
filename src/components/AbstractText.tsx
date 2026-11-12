@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOwnerHash } from "@/lib/owner-key";
+import { TeacherSignIn, useTeacherSession } from "@/hooks/use-teacher-session";
 
 const SLOT_ID = "header-abstract";
 
@@ -8,8 +9,10 @@ export function AbstractText({ color }: { color: string }) {
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
+  const { user, ready } = useTeacherSession();
 
   const load = useCallback(async () => {
+    if (!user) return setText("");
     const { data, error } = await supabase
       .from("plt_links")
       .select("url")
@@ -19,20 +22,21 @@ export function AbstractText({ color }: { color: string }) {
     if (!error && data && data.length > 0 && typeof data[0].url === "string") {
       setText(data[0].url);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     void load();
   }, [load]);
 
   const save = async () => {
+    if (!user) return;
     setBusy(true);
     setStatus(null);
     const trimmed = text.trim();
     if (trimmed) {
       const { error } = await supabase
         .from("plt_links")
-        .insert({ slot_id: SLOT_ID, url: trimmed, title: "abstract", owner_hash: await getOwnerHash() });
+        .insert({ slot_id: SLOT_ID, url: trimmed, title: "abstract", user_id: user.id, owner_hash: await getOwnerHash() });
       setStatus(error ? error.message : "Abstract saved.");
     } else {
       setStatus("Abstract cleared.");
@@ -54,6 +58,7 @@ export function AbstractText({ color }: { color: string }) {
           Write the lesson abstract here, then save — it stays after you refresh.
         </p>
       </div>
+      {ready && !user ? <TeacherSignIn color={color} /> : <>
       <textarea
         aria-label="Lesson abstract"
         value={text}
@@ -74,6 +79,7 @@ export function AbstractText({ color }: { color: string }) {
         </button>
         {status && <span className="text-xs text-muted-foreground">{status}</span>}
       </div>
+      </>}
     </div>
   );
 }
